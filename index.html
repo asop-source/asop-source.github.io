@@ -95,7 +95,9 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
   -webkit-print-color-adjust:exact;print-color-adjust:exact}
 
 /* ============ experience ============ */
-.entry{margin-bottom:4.6mm;break-inside:avoid;page-break-inside:avoid}
+.entry{margin-bottom:4.6mm}
+/* entry boleh terbelah antar halaman, tapi judul tidak boleh terpisah dari isinya */
+.entry-top,.entry-org,.entry-note{break-after:avoid;page-break-after:avoid}
 .entry:last-child{margin-bottom:0}
 .entry-top{display:flex;justify-content:space-between;align-items:baseline;gap:6mm}
 .entry-title{font-size:10pt;font-weight:700;color:var(--ink);letter-spacing:-.1px}
@@ -104,8 +106,8 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
   -webkit-print-color-adjust:exact;print-color-adjust:exact}
 .entry-org{font-size:9pt;font-weight:600;color:var(--accent);margin-top:2px}
 .entry-note{font-size:8.2pt;color:var(--soft);margin-top:2px}
-.entry ul{list-style:none;margin-top:4px}
-.entry li{position:relative;padding-left:11px;margin-bottom:2px;font-size:9pt;line-height:1.42}
+.entry ul{list-style:none;margin-top:4px;orphans:2;widows:2}
+.entry li{position:relative;padding-left:11px;margin-bottom:2px;font-size:9pt;line-height:1.42;break-inside:avoid;page-break-inside:avoid}
 .entry li b{color:var(--navy);font-weight:700}
 .entry li::before{content:"";position:absolute;left:0;top:.55em;width:0;height:0;
   border:2px solid var(--accent);border-radius:50%;opacity:.75;
