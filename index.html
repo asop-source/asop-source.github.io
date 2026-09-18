@@ -11,7 +11,7 @@
 <meta property="og:type" content="profile">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,600;9..144,700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Fraunces:opsz,wght@9..144,700&display=swap" rel="stylesheet">
 <style>
 :root{
   --navy:#0f3557;
@@ -26,6 +26,7 @@
   --wash:#f5f8fa;
   --paper:#fff;
   --canvas:#dfe5ec;
+  --scale:.82;
   --page-w:210mm;
 }
 *{box-sizing:border-box;margin:0;padding:0}
@@ -183,7 +184,7 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
 @media print{
   html,body{background:#fff}
   .toolbar{display:none !important}
-  .sheet{width:210mm;margin:0;box-shadow:none}
+  .sheet{width:calc(210mm / var(--scale));zoom:var(--scale);margin:0;box-shadow:none}
   a{color:inherit;text-decoration:none}
   .ach a{color:var(--accent)}
   h2.sec{break-after:avoid;page-break-after:avoid}
