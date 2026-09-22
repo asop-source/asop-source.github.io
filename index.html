@@ -148,6 +148,8 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
 .edu-title{font-size:9pt;font-weight:700;color:var(--ink);line-height:1.3}
 .edu-meta{font-size:8.1pt;color:var(--soft);margin-top:1px}
 .aside-list{list-style:none;font-size:8.3pt}
+.aside-list a{color:var(--accent);text-decoration:none}
+.aside-list a:hover{text-decoration:underline}
 .aside-list li{position:relative;padding-left:10px;margin-bottom:2px;line-height:1.4}
 .aside-list li::before{content:"";position:absolute;left:0;top:.55em;width:0;height:0;
   border:1.75px solid var(--gold);border-radius:50%;
@@ -186,7 +188,7 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
   .toolbar{display:none !important}
   .sheet{width:calc(210mm / var(--scale));zoom:var(--scale);margin:0;box-shadow:none}
   a{color:inherit;text-decoration:none}
-  .ach a{color:var(--accent)}
+  .ach a,.aside-list a{color:var(--accent)}
   h2.sec{break-after:avoid;page-break-after:avoid}
   .ach li,.entry{orphans:2;widows:2}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
@@ -239,7 +241,7 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
         <h2 class="sec">Key Achievements</h2>
         <ul class="ach">
           <li><b>Built an ITSM platform from scratch</b> &mdash; designed and shipped an in-house IT Service Management system (<a href="https://itsms.gavit.id" target="_blank" rel="noopener">itsms.gavit.id</a>) in 6 months: backend, frontend, ticketing/SLA logic, and WhatsApp bot notifications, now the company's primary support system.</li>
-          <li><b>Built a national-scale loyalty platform</b> &mdash; architected and developed a customer loyalty program (<a href="https://gebyar.multi-kabel.com" target="_blank" rel="noopener">gebyar.multi-kabel.com</a>) end to end &mdash; API, admin dashboard, and customer-facing flows &mdash; supporting a nationwide rollout.</li>
+          <li><b>Built a national-scale loyalty platform</b> &mdash; architected and developed a customer loyalty program (<a href="https://loyalti.multi-kabel.com" target="_blank" rel="noopener">loyalti.multi-kabel.com</a>) end to end &mdash; API, admin dashboard, and customer-facing flows &mdash; supporting a nationwide rollout.</li>
           <li><b>Led a zero-downtime ERP migration</b> &mdash; migrated <b>98 users across a 4-company group</b> from Odoo Enterprise to a self-hosted Odoo Community deployment, preserving full business functionality with no disruption.</li>
           <li><b>Re-architected infrastructure</b> &mdash; moved workloads from cloud hosting to a self-managed on-premise stack (Docker, Nginx, Linux), redesigning the deployment pipeline for cost and reliability.</li>
           <li><b>Delivered network infrastructure in-house</b> &mdash; designed and executed a full network rollout without external vendors, from planning to implementation.</li>
@@ -248,23 +250,6 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
 
       <section>
         <h2 class="sec">Professional Experience</h2>
-
-        <div class="entry">
-          <div class="entry-top">
-            <div class="entry-title">MIS Manager</div>
-            <div class="entry-date">Jan 2026 &ndash; Present</div>
-          </div>
-          <div class="entry-org">PT. Multi Kencana Niagatama &middot; Jakarta Barat</div>
-          <div class="entry-note">Hands-on technical owner of the company's ERP, internal platforms, and infrastructure.</div>
-          <ul>
-            <li>Architect and build the company's in-house systems end to end &mdash; Odoo/Python backend, JavaScript frontend, PostgreSQL, deployed on Docker/Linux &mdash; including the ITSM and loyalty platforms.</li>
-            <li>Design and ship customized ERP modules from data model to UI, translating cross-department requirements into working software.</li>
-            <li>Build and maintain internal automation and integrations (n8n, APIs, scripting) connecting Odoo, Accurate, and Microsoft 365 into a single operational workflow.</li>
-            <li>Own infrastructure for systems serving <b>300 users across a 4-company group</b> &mdash; deployment, monitoring, backup, and security on self-hosted infrastructure.</li>
-            <li>Lead a 5-person engineering/support team while staying hands-on &mdash; writing code, reviewing PRs, and resolving complex issues directly.</li>
-            <li>Explore and apply AI agent tooling &mdash; LangChain, MCP, OpenRouter, local LLMs &mdash; to prototype automation for internal support and reporting workflows.</li>
-          </ul>
-        </div>
 
         <div class="entry">
           <div class="entry-top">
@@ -359,13 +344,14 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
       </div>
 
       <div class="aside-block">
-        <h2 class="sec">Systems Built</h2>
+        <h2 class="sec">Portfolio</h2>
         <ul class="aside-list">
+          <li><a href="https://itsms.gavit.id" target="_blank" rel="noopener">itsms.gavit.id</a> &mdash; ITSM platform, built in-house</li>
+          <li><a href="https://loyalti.multi-kabel.com" target="_blank" rel="noopener">loyalti.multi-kabel.com</a> &mdash; national loyalty program</li>
+          <li><a href="https://yellow.gavit.id" target="_blank" rel="noopener">yellow.gavit.id</a> &mdash; YellowMetric survey platform</li>
+          <li><a href="http://cms.gavit.id" target="_blank" rel="noopener">cms.gavit.id</a> &mdash; internal CMS platform</li>
           <li>Odoo ERP &mdash; Community, self-hosted; 300 users across 4 companies</li>
-          <li>Accurate Accounting</li>
-          <li>Microsoft 365 &mdash; tenant &amp; licensing</li>
-          <li>IT Service Management &mdash; built in-house</li>
-          <li>Gebyar Loyalty &mdash; national program, built in-house</li>
+          <li>Accurate Accounting &amp; Microsoft 365 &mdash; business application ownership</li>
         </ul>
       </div>
 
