@@ -539,8 +539,8 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
     var name = document.getElementById('gateName').value.trim();
     if (!name) return;
 
-    gateSubmit.disabled = true;
-    gateSubmit.textContent = 'Memproses...';
+    sessionStorage.setItem('cvVisitorLogged', '1');
+    overlay.classList.remove('open');
 
     getLocation().then(function(location){
       fetch(LOG_URL, {
@@ -554,9 +554,6 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
           location: location
         })
       }).catch(function(){});
-
-      sessionStorage.setItem('cvVisitorLogged', '1');
-      overlay.classList.remove('open');
     });
   });
 
