@@ -181,6 +181,20 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
   .tag{font-size:9.5pt}
 }
 
+/* ============ visitor gate ============ */
+.gate-overlay{position:fixed;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(3px);
+  display:flex;align-items:center;justify-content:center;z-index:100;padding:20px}
+.gate-card{background:#fff;border-radius:10px;max-width:340px;width:100%;padding:26px 24px;
+  box-shadow:0 20px 60px rgba(15,23,42,.3)}
+.gate-card h3{font-family:'Fraunces',Georgia,serif;font-size:17pt;color:var(--ink);margin-bottom:6px}
+.gate-card p{font-size:9.3pt;color:var(--soft);line-height:1.5;margin-bottom:14px}
+.gate-card input{width:100%;font:inherit;font-size:10.5pt;padding:9px 11px;border:1px solid var(--rule);
+  border-radius:6px;margin-bottom:10px}
+.gate-card input:focus{outline:2px solid var(--accent-soft);border-color:var(--accent)}
+.gate-card button{width:100%;font:inherit;font-size:10.5pt;font-weight:600;padding:9px;border:none;
+  border-radius:6px;background:var(--navy);color:#fff;cursor:pointer}
+.gate-card button:hover{background:#0a2740}
+
 /* ============ print — A4, desain sama ============ */
 @page{size:A4;margin:0}
 @media print{
@@ -206,6 +220,8 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
   <div class="toolbar-in">
     <a class="btn btn-ghost" href="mailto:asopkarawang@gmail.com">
       <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>Email</a>
+    <button class="btn btn-ghost" onclick="openVisitorLog()">
+      <svg viewBox="0 0 24 24"><path d="M3 3v18h18v-2H5V3H3zm4 14h2v-6H7v6zm4 0h2V7h-2v10zm4 0h2v-4h-2v4z"/></svg>Analytics</button>
     <button class="btn btn-primary" onclick="window.print()">
       <svg viewBox="0 0 24 24"><path d="M19 8H5a3 3 0 00-3 3v6h4v4h12v-4h4v-6a3 3 0 00-3-3zm-3 11H8v-5h8v5zm3-7a1 1 0 110-2 1 1 0 010 2zM18 3H6v4h12V3z"/></svg>Save as PDF</button>
   </div>
@@ -411,6 +427,54 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
   </section>
   </div>
 </article>
+
+<div class="gate-overlay" id="gateOverlay">
+  <div class="gate-card">
+    <h3>Selamat datang</h3>
+    <p>Masukkan nama Anda untuk melihat CV ini.</p>
+    <form id="gateForm">
+      <input type="text" id="gateName" placeholder="Nama Anda" required autofocus>
+      <button type="submit">Lihat CV</button>
+    </form>
+  </div>
+</div>
+
+<script>
+(function(){
+  var LOG_URL = 'https://script.google.com/macros/s/AKfycbwxC651tArVpg3ixQ9rv8D_Ex6BriZCq6wmrjezeEVq7Mb6xMdCCIfl4qwngvxMh7Jl/exec';
+  var SHEET_URL = 'https://docs.google.com/spreadsheets/d/1lkJCbbmCS2fe83eTezw4j9hB3kIMAPyId65vZAkZ-lk/edit';
+  var overlay = document.getElementById('gateOverlay');
+  var form = document.getElementById('gateForm');
+
+  if (sessionStorage.getItem('cvVisitorLogged')) {
+    overlay.style.display = 'none';
+  }
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('gateName').value.trim();
+    if (!name) return;
+
+    fetch(LOG_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {'Content-Type': 'text/plain'},
+      body: JSON.stringify({
+        name: name,
+        referrer: document.referrer || '(direct)',
+        userAgent: navigator.userAgent
+      })
+    }).catch(function(){});
+
+    sessionStorage.setItem('cvVisitorLogged', '1');
+    overlay.style.display = 'none';
+  });
+
+  window.openVisitorLog = function(){
+    window.open(SHEET_URL, 'cvVisitorLog', 'width=1000,height=700,noopener');
+  };
+})();
+</script>
 
 </body>
 </html>
