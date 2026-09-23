@@ -195,6 +195,26 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
   border-radius:6px;background:var(--navy);color:#fff;cursor:pointer}
 .gate-card button:hover{background:#0a2740}
 
+/* ============ analytics modal ============ */
+.log-overlay{position:fixed;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(3px);
+  display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+.log-overlay.open{display:flex}
+.log-card{background:#fff;border-radius:10px;max-width:760px;width:100%;max-height:80vh;
+  display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(15,23,42,.3)}
+.log-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;
+  border-bottom:1px solid var(--rule)}
+.log-head h3{font-family:'Fraunces',Georgia,serif;font-size:14pt;color:var(--ink)}
+.log-close{background:none;border:none;font-size:18px;color:var(--soft);cursor:pointer;line-height:1;padding:4px}
+.log-close:hover{color:var(--ink)}
+.log-body{overflow:auto;padding:0 20px 20px}
+.log-table{width:100%;border-collapse:collapse;font-size:8.6pt}
+.log-table th{text-align:left;padding:7px 8px;border-bottom:2px solid var(--rule);color:var(--navy);
+  font-weight:700;white-space:nowrap;position:sticky;top:0;background:#fff}
+.log-table td{padding:6px 8px;border-bottom:1px solid var(--rule);color:var(--body);
+  white-space:nowrap}
+.log-table td.ua{white-space:normal;word-break:break-all;min-width:220px}
+.log-empty,.log-loading,.log-error{padding:20px;text-align:center;color:var(--soft);font-size:9.3pt}
+
 /* ============ print — A4, desain sama ============ */
 @page{size:A4;margin:0}
 @media print{
@@ -439,10 +459,22 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
   </div>
 </div>
 
+<div class="log-overlay" id="logOverlay">
+  <div class="log-card">
+    <div class="log-head">
+      <h3>Visitor Log</h3>
+      <button class="log-close" onclick="closeVisitorLog()">&times;</button>
+    </div>
+    <div class="log-body" id="logBody">
+      <div class="log-loading">Memuat...</div>
+    </div>
+  </div>
+</div>
+
 <script>
 (function(){
-  var LOG_URL = 'https://script.google.com/macros/s/AKfycbwxC651tArVpg3ixQ9rv8D_Ex6BriZCq6wmrjezeEVq7Mb6xMdCCIfl4qwngvxMh7Jl/exec';
-  var SHEET_URL = 'https://docs.google.com/spreadsheets/d/1lkJCbbmCS2fe83eTezw4j9hB3kIMAPyId65vZAkZ-lk/edit';
+  var LOG_URL = 'https://script.google.com/macros/s/AKfycbykbfQ5UsexFIz68nfMa4W8js0EqtkmKuZA7UUg9Z0bKvE5La75wVanORaCyWfskPc/exec';
+  var ACCESS_KEY = 'cb8ef8bed44fc6c14bb21659ad8d3d74';
   var overlay = document.getElementById('gateOverlay');
   var form = document.getElementById('gateForm');
 
@@ -470,9 +502,58 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
     overlay.style.display = 'none';
   });
 
+  var logOverlay = document.getElementById('logOverlay');
+  var logBody = document.getElementById('logBody');
+
+  function escapeHtml(str){
+    return String(str == null ? '' : str).replace(/[&<>"']/g, function(c){
+      return {'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c];
+    });
+  }
+
+  function renderRows(rows){
+    if (!rows.length) {
+      logBody.innerHTML = '<div class="log-empty">Belum ada kunjungan tercatat.</div>';
+      return;
+    }
+    var html = '<table class="log-table"><thead><tr>'
+      + '<th>Waktu</th><th>Nama</th><th>Referrer</th><th>User Agent</th>'
+      + '</tr></thead><tbody>';
+    rows.forEach(function(r){
+      var time = r.time ? new Date(r.time).toLocaleString('id-ID') : '';
+      html += '<tr><td>' + escapeHtml(time) + '</td><td>' + escapeHtml(r.name)
+        + '</td><td>' + escapeHtml(r.referrer) + '</td><td class="ua">'
+        + escapeHtml(r.userAgent) + '</td></tr>';
+    });
+    html += '</tbody></table>';
+    logBody.innerHTML = html;
+  }
+
   window.openVisitorLog = function(){
-    window.open(SHEET_URL, 'cvVisitorLog', 'width=1000,height=700,noopener');
+    logOverlay.classList.add('open');
+    logBody.innerHTML = '<div class="log-loading">Memuat...</div>';
+
+    fetch(LOG_URL + '?key=' + encodeURIComponent(ACCESS_KEY))
+      .then(function(res){ return res.json(); })
+      .then(function(data){
+        if (data.status !== 'ok') {
+          logBody.innerHTML = '<div class="log-error">Akses ditolak.</div>';
+          return;
+        }
+        renderRows(data.rows || []);
+      })
+      .catch(function(){
+        logBody.innerHTML = '<div class="log-error">Gagal memuat data.</div>';
+      });
   };
+
+  window.closeVisitorLog = function(){
+    logOverlay.classList.remove('open');
+  };
+
+  logOverlay.addEventListener('click', function(e){
+    if (e.target === logOverlay) closeVisitorLog();
+  });
 })();
 </script>
 
