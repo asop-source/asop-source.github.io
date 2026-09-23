@@ -183,7 +183,8 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
 
 /* ============ visitor gate ============ */
 .gate-overlay{position:fixed;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(3px);
-  display:flex;align-items:center;justify-content:center;z-index:100;padding:20px}
+  display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+.gate-overlay.open{display:flex}
 .gate-card{background:#fff;border-radius:10px;max-width:340px;width:100%;padding:26px 24px;
   box-shadow:0 20px 60px rgba(15,23,42,.3)}
 .gate-card h3{font-family:'Fraunces',Georgia,serif;font-size:17pt;color:var(--ink);margin-bottom:6px}
@@ -194,6 +195,8 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
 .gate-card button{width:100%;font:inherit;font-size:10.5pt;font-weight:600;padding:9px;border:none;
   border-radius:6px;background:var(--navy);color:#fff;cursor:pointer}
 .gate-card button:hover{background:#0a2740}
+.gate-card button:disabled{opacity:.6;cursor:default}
+.gate-error{font-size:8.6pt;color:#c0392b;margin:-4px 0 10px}
 
 /* ============ analytics modal ============ */
 .log-overlay{position:fixed;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(3px);
@@ -448,13 +451,25 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
   </div>
 </article>
 
-<div class="gate-overlay" id="gateOverlay">
+<div class="gate-overlay open" id="gateOverlay">
   <div class="gate-card">
     <h3>Selamat datang</h3>
     <p>Masukkan nama Anda untuk melihat CV ini.</p>
     <form id="gateForm">
       <input type="text" id="gateName" placeholder="Nama Anda" required autofocus>
-      <button type="submit">Lihat CV</button>
+      <button type="submit" id="gateSubmit">Lihat CV</button>
+    </form>
+  </div>
+</div>
+
+<div class="gate-overlay" id="loginOverlay">
+  <div class="gate-card">
+    <h3>Analytics Login</h3>
+    <p>Masuk untuk melihat visitor log.</p>
+    <form id="loginForm">
+      <input type="password" id="loginPassword" placeholder="Password" required autofocus>
+      <div class="gate-error" id="loginError" style="display:none">Password salah.</div>
+      <button type="submit">Masuk</button>
     </form>
   </div>
 </div>
@@ -473,13 +488,50 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
 
 <script>
 (function(){
-  var LOG_URL = 'https://script.google.com/macros/s/AKfycbykbfQ5UsexFIz68nfMa4W8js0EqtkmKuZA7UUg9Z0bKvE5La75wVanORaCyWfskPc/exec';
+  var LOG_URL = 'https://script.google.com/macros/s/AKfycbwnRaYgY_5Xb47M-jXQvDANTLWDEgp21ZpRo8Ksy0PN3yqvGqltJOkqqpyksiA4_0xX/exec';
   var ACCESS_KEY = 'cb8ef8bed44fc6c14bb21659ad8d3d74';
+  var ANALYTICS_PASSWORD = 'asopgantengsekali';
   var overlay = document.getElementById('gateOverlay');
   var form = document.getElementById('gateForm');
+  var gateSubmit = document.getElementById('gateSubmit');
 
   if (sessionStorage.getItem('cvVisitorLogged')) {
-    overlay.style.display = 'none';
+    overlay.classList.remove('open');
+  }
+
+  function getLocation(){
+    return new Promise(function(resolve){
+      if (!navigator.geolocation) { resolve(''); return; }
+
+      var done = false;
+      var timer = setTimeout(function(){
+        if (!done) { done = true; resolve(''); }
+      }, 8000);
+
+      navigator.geolocation.getCurrentPosition(
+        function(pos){
+          if (done) return;
+          done = true;
+          clearTimeout(timer);
+          var lat = pos.coords.latitude.toFixed(5);
+          var lon = pos.coords.longitude.toFixed(5);
+          fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=' + lat + '&lon=' + lon)
+            .then(function(res){ return res.json(); })
+            .then(function(data){
+              var address = data && data.display_name ? data.display_name : '';
+              resolve(lat + ', ' + lon + (address ? ' - ' + address : ''));
+            })
+            .catch(function(){ resolve(lat + ', ' + lon); });
+        },
+        function(){
+          if (done) return;
+          done = true;
+          clearTimeout(timer);
+          resolve('');
+        },
+        { timeout: 7000, maximumAge: 300000 }
+      );
+    });
   }
 
   form.addEventListener('submit', function(e){
@@ -487,19 +539,25 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
     var name = document.getElementById('gateName').value.trim();
     if (!name) return;
 
-    fetch(LOG_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: {'Content-Type': 'text/plain'},
-      body: JSON.stringify({
-        name: name,
-        referrer: document.referrer || '(direct)',
-        userAgent: navigator.userAgent
-      })
-    }).catch(function(){});
+    gateSubmit.disabled = true;
+    gateSubmit.textContent = 'Memproses...';
 
-    sessionStorage.setItem('cvVisitorLogged', '1');
-    overlay.style.display = 'none';
+    getLocation().then(function(location){
+      fetch(LOG_URL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {'Content-Type': 'text/plain'},
+        body: JSON.stringify({
+          name: name,
+          referrer: document.referrer || '(direct)',
+          userAgent: navigator.userAgent,
+          location: location
+        })
+      }).catch(function(){});
+
+      sessionStorage.setItem('cvVisitorLogged', '1');
+      overlay.classList.remove('open');
+    });
   });
 
   var logOverlay = document.getElementById('logOverlay');
@@ -517,19 +575,19 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
       return;
     }
     var html = '<table class="log-table"><thead><tr>'
-      + '<th>Waktu</th><th>Nama</th><th>Referrer</th><th>User Agent</th>'
+      + '<th>Waktu</th><th>Nama</th><th>Lokasi</th><th>Referrer</th><th>User Agent</th>'
       + '</tr></thead><tbody>';
     rows.forEach(function(r){
       var time = r.time ? new Date(r.time).toLocaleString('id-ID') : '';
       html += '<tr><td>' + escapeHtml(time) + '</td><td>' + escapeHtml(r.name)
-        + '</td><td>' + escapeHtml(r.referrer) + '</td><td class="ua">'
-        + escapeHtml(r.userAgent) + '</td></tr>';
+        + '</td><td class="ua">' + escapeHtml(r.location || '-') + '</td><td>' + escapeHtml(r.referrer)
+        + '</td><td class="ua">' + escapeHtml(r.userAgent) + '</td></tr>';
     });
     html += '</tbody></table>';
     logBody.innerHTML = html;
   }
 
-  window.openVisitorLog = function(){
+  function fetchAndShowLog(){
     logOverlay.classList.add('open');
     logBody.innerHTML = '<div class="log-loading">Memuat...</div>';
 
@@ -545,7 +603,7 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
       .catch(function(){
         logBody.innerHTML = '<div class="log-error">Gagal memuat data.</div>';
       });
-  };
+  }
 
   window.closeVisitorLog = function(){
     logOverlay.classList.remove('open');
@@ -553,6 +611,33 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
 
   logOverlay.addEventListener('click', function(e){
     if (e.target === logOverlay) closeVisitorLog();
+  });
+
+  var loginOverlay = document.getElementById('loginOverlay');
+  var loginForm = document.getElementById('loginForm');
+  var loginError = document.getElementById('loginError');
+
+  window.openVisitorLog = function(){
+    loginError.style.display = 'none';
+    loginForm.reset();
+    loginOverlay.classList.add('open');
+  };
+
+  loginForm.addEventListener('submit', function(e){
+    e.preventDefault();
+    var password = document.getElementById('loginPassword').value;
+
+    if (password !== ANALYTICS_PASSWORD) {
+      loginError.style.display = 'block';
+      return;
+    }
+
+    loginOverlay.classList.remove('open');
+    fetchAndShowLog();
+  });
+
+  loginOverlay.addEventListener('click', function(e){
+    if (e.target === loginOverlay) loginOverlay.classList.remove('open');
   });
 })();
 </script>
