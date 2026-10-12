@@ -225,15 +225,17 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
 .log-empty,.log-loading,.log-error{padding:20px;text-align:center;color:var(--soft);font-size:9.3pt}
 
 /* ============ print — A4, desain sama ============ */
-@page{size:A4;margin:0}
+@page{size:A4;margin:10mm 0}
+@page:first{margin-top:0}
 @media print{
   html,body{background:#fff}
-  .toolbar{display:none !important}
+  .toolbar,.gate-overlay,.log-overlay{display:none !important}
   .sheet{width:calc(210mm / var(--scale));zoom:var(--scale);margin:0;box-shadow:none}
   a{color:inherit;text-decoration:none}
   .ach a,.aside-list a{color:var(--accent)}
   h2.sec{break-after:avoid;page-break-after:avoid}
   .ach li,.entry{orphans:2;widows:2}
+  .entry,.aside-block,.proj,.edu{break-inside:avoid;page-break-inside:avoid}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 </style>
