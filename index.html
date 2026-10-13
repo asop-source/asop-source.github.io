@@ -32,7 +32,7 @@
   --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
   --scale:.88;
   --page-w:210mm;
-  --side-w:68mm;
+  --side-w:72mm;
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{-webkit-text-size-adjust:100%}
@@ -59,7 +59,7 @@ a{color:inherit}
   box-shadow:0 1px 2px rgba(15,23,42,.05),0 16px 44px rgba(15,23,42,.14)}
 /* latar sidebar sebagai elemen terpisah: di print dibuat fixed supaya ada di setiap halaman */
 .side-bg{position:absolute;left:0;top:0;bottom:0;width:var(--side-w);background:var(--side)}
-.side{position:relative;color:var(--side-ink);padding:12mm 7mm 12mm}
+.side{position:relative;color:var(--side-ink);padding:12mm 6mm 12mm}
 .main{padding:12mm 11mm 12mm 10mm;min-width:0}
 
 /* ---- sidebar ---- */
@@ -67,7 +67,7 @@ a{color:inherit}
   box-shadow:0 0 0 1.2mm var(--side),0 0 0 1.7mm var(--teal-lt)}
 .portrait img{width:100%;height:100%;object-fit:cover;display:block}
 .name{margin-top:7mm;font-size:30pt;line-height:1;font-weight:800;color:#fff;letter-spacing:-.8px}
-.role{margin-top:6px;font-family:var(--mono);font-size:8.6pt;font-weight:600;line-height:1.45;color:var(--teal-lt);text-transform:uppercase;letter-spacing:.04em}
+.role{margin-top:6px;font-size:7.8pt;font-weight:600;line-height:1.4;color:var(--teal-lt);white-space:nowrap;letter-spacing:0}
 .side-block{margin-top:7mm}
 .sh{font-family:var(--mono);font-size:8pt;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
   color:var(--teal-lt);margin-bottom:3mm;display:flex;align-items:center;gap:6px}
@@ -162,6 +162,7 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   .side-rest .side-block{margin-top:24px}
   .portrait{width:100px;height:100px;margin:0}
   .name{margin-top:18px}
+  .role{font-size:10pt;white-space:normal}
   .contacts{font-size:10pt;margin-top:20px}
   .glance{grid-template-columns:repeat(2,1fr)}
   .ach li{grid-template-columns:1fr;gap:4px}
