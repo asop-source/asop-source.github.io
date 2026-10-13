@@ -59,7 +59,7 @@ a{color:inherit}
   box-shadow:0 1px 2px rgba(15,23,42,.05),0 16px 44px rgba(15,23,42,.14)}
 /* latar sidebar sebagai elemen terpisah: di print dibuat fixed supaya ada di setiap halaman */
 /* sidebar setinggi kolom utama; isinya direntangkan supaya tidak ada area kosong */
-.side{position:relative;background:var(--side);color:var(--side-ink);padding:12mm 6mm 12mm;display:flex;flex-direction:column}
+.side{position:relative;background:var(--side) url(batik-naga.svg) 0 0/220px repeat;color:var(--side-ink);padding:12mm 6mm 12mm;display:flex;flex-direction:column}
 .side-rest{flex:1;display:flex;flex-direction:column;justify-content:space-between}
 .main{padding:12mm 11mm 12mm 10mm;min-width:0}
 
@@ -167,9 +167,9 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   .toolbar-in{padding:9px 14px;flex-wrap:wrap}
   .sheet{display:flex;flex-direction:column;margin:0;box-shadow:none}
   .side{display:contents}
-  .side-top{order:1;background:var(--side);color:var(--side-ink);padding:28px 20px 24px}
+  .side-top{order:1;background:var(--side) url(batik-naga.svg) 0 0/220px repeat;color:var(--side-ink);padding:28px 20px 24px}
   .main{order:2;padding:24px 20px}
-  .side-rest{display:block;order:3;background:var(--side);color:var(--side-ink);padding:4px 20px 30px}
+  .side-rest{display:block;order:3;background:var(--side) url(batik-naga.svg) 0 0/220px repeat;color:var(--side-ink);padding:4px 20px 30px}
   .side-rest .side-block{margin-top:24px}
   .portrait{width:100px;height:100px;margin:0}
   .name{margin-top:18px}
@@ -245,7 +245,7 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   .sheet{width:calc(210mm / var(--scale));zoom:var(--scale);margin:0;box-shadow:none}
   /* latar sidebar digambar di sheet agar tersambung di semua halaman */
   .sheet{background:transparent}
-  .side{background:transparent}
+  .side{background:url(batik-naga.svg) 0 0/220px repeat transparent}
   .side-rest{justify-content:flex-start}
   .projects{gap:1.3mm}
   .stack-group{break-inside:avoid}
