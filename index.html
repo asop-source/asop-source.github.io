@@ -324,6 +324,7 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
       <div class="side-block">
         <h3 class="sh">Industry Coverage</h3>
         <div class="projects">
+        <div class="proj"><b>Automotive Dealership</b><span>Motorcycle sales, lead handling, test-ride booking, unit tracking, invoicing, reporting.</span></div>
         <div class="proj"><b>Retail</b><span>POS, CRM, Sales, Purchase, Inventory, Accounting, Promotions, Pricelist, Loyalty, E-Commerce, Payment Gateway.</span></div>
         <div class="proj"><b>Manufacturing</b><span>MRP, BoM, Routing, Work Orders, Production Planning, Quality, Lot Traceability, Costing.</span></div>
         <div class="proj"><b>Distribution &amp; Supply Chain</b><span>Multi-warehouse WMS, Replenishment Rules, Logistics, Shipping, Stock Valuation.</span></div>
@@ -334,7 +335,6 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
         <div class="proj"><b>Logistics &amp; Transportation</b><span>Fleet Management, Route Planning, Delivery Orders, Shipment Tracking, Proof of Delivery, Fuel Costing.</span></div>
         <div class="proj"><b>Hospitality Management</b><span>Hotel meeting room &amp; event facility booking, scheduling, reporting, system integration.</span></div>
         <div class="proj"><b>Digital Signage</b><span>Centralized content management, device provisioning, playlists &amp; scheduling, multi-location deployment, monitoring.</span></div>
-        <div class="proj"><b>Automotive Dealership</b><span>Motorcycle sales, lead handling, test-ride booking, unit tracking, invoicing, reporting.</span></div>
         <div class="proj"><b>IT Service Management</b><span>Ticketing, incident &amp; service request handling, SLA tracking, asset/CMDB, WhatsApp notification bot, reporting dashboard.</span></div>
         </div>
       </div>
@@ -459,6 +459,17 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
 
 </article>
 
+<div class="gate-overlay open" id="gateOverlay">
+  <div class="gate-card">
+    <h3>Selamat datang</h3>
+    <p>Masukkan nama Anda untuk melihat CV ini.</p>
+    <form id="gateForm">
+      <input type="text" id="gateName" placeholder="Nama Anda" required autofocus>
+      <button type="submit">Lihat CV</button>
+    </form>
+  </div>
+</div>
+
 <div class="gate-overlay" id="loginOverlay">
   <div class="gate-card">
     <h3>Analytics Login</h3>
@@ -487,23 +498,31 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
 (function(){
   var LOG_URL = 'https://script.google.com/macros/s/AKfycbwmFTpVTouPV7LRxbci7TmPgKbe4bI0gwtVu4SYBOjcS-P7zlVqW7fPqx5vB2eH5f1C/exec';
 
-  // catat kunjungan secara anonim, sekali per sesi, tanpa nama dan tanpa lokasi
+  // pengunjung mengisi nama sekali per sesi, lalu kunjungan dicatat (tanpa lokasi)
+  var overlay = document.getElementById('gateOverlay');
+  var form = document.getElementById('gateForm');
   var logged = false;
   try { logged = !!sessionStorage.getItem('cvVisitorLogged'); } catch (e) {}
-  if (!logged) {
+  if (logged) overlay.classList.remove('open');
+
+  form.addEventListener('submit', function(e){
+    e.preventDefault();
+    var name = document.getElementById('gateName').value.trim();
+    if (!name) return;
     try { sessionStorage.setItem('cvVisitorLogged', '1'); } catch (e) {}
+    overlay.classList.remove('open');
     fetch(LOG_URL, {
       method: 'POST',
       mode: 'no-cors',
       headers: {'Content-Type': 'text/plain'},
       body: JSON.stringify({
-        name: '(anonymous)',
+        name: name,
         referrer: document.referrer || '(direct)',
         userAgent: navigator.userAgent,
         location: ''
       })
     }).catch(function(){});
-  }
+  });
 
   var logOverlay = document.getElementById('logOverlay');
   var logBody = document.getElementById('logBody');
