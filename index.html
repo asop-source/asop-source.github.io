@@ -61,7 +61,7 @@ a{color:inherit}
 /* sidebar setinggi kolom utama; isinya direntangkan supaya tidak ada area kosong */
 .side{position:relative;background:var(--side) url(batik-naga.svg) 0 0/220px repeat;color:var(--side-ink);padding:12mm 6mm 12mm;display:flex;flex-direction:column}
 .side-rest{flex:1;display:flex;flex-direction:column;justify-content:space-between}
-.main{padding:12mm 11mm 12mm 10mm;min-width:0}
+.main{padding:12mm 11mm 12mm 10mm;min-width:0;background:url(batik-naga-light.svg) 0 0/220px repeat}
 
 /* ---- sidebar ---- */
 .portrait{width:36mm;height:36mm;margin:0 auto;border-radius:50%;overflow:hidden;
@@ -246,6 +246,7 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   /* latar sidebar digambar di sheet agar tersambung di semua halaman */
   .sheet{background:transparent}
   .side{background:url(batik-naga.svg) 0 0/220px repeat transparent}
+  .main{background:url(batik-naga-light.svg) 0 0/220px repeat transparent}
   .side-rest{justify-content:flex-start}
   .projects{gap:1.3mm}
   .stack-group{break-inside:avoid}
