@@ -206,6 +206,11 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
 .log-head h3{font-size:13pt;font-weight:700;color:var(--ink)}
 .log-close{background:none;border:none;font-size:18px;color:var(--soft);cursor:pointer;line-height:1;padding:4px}
 .log-close:hover{color:var(--ink)}
+.log-actions{display:flex;align-items:center;gap:10px}
+.log-del,.log-clear{font:inherit;font-size:8.4pt;font-weight:600;color:#b42318;background:#fff;border:1px solid #f1c4bf;
+  border-radius:5px;padding:3px 9px;cursor:pointer;white-space:nowrap}
+.log-del:hover,.log-clear:hover{background:#fef3f2}
+.log-del:disabled,.log-clear:disabled{opacity:.5;cursor:default}
 .log-body{overflow:auto;padding:0 20px 20px}
 .log-table{width:100%;border-collapse:collapse;font-size:8.6pt}
 .log-table th{text-align:left;padding:7px 8px;border-bottom:2px solid var(--rule);color:var(--navy);
@@ -486,7 +491,10 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   <div class="log-card">
     <div class="log-head">
       <h3>Visitor Log</h3>
-      <button class="log-close" onclick="closeVisitorLog()">&times;</button>
+      <div class="log-actions">
+        <button class="log-clear" id="logClear" type="button" style="display:none">Hapus semua</button>
+        <button class="log-close" onclick="closeVisitorLog()">&times;</button>
+      </div>
     </div>
     <div class="log-body" id="logBody">
       <div class="log-loading">Memuat...</div>
@@ -536,22 +544,59 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   function renderRows(rows){
     if (!rows.length) {
       logBody.innerHTML = '<div class="log-empty">Belum ada kunjungan tercatat.</div>';
+      logClear.style.display = 'none';
       return;
     }
+    logClear.style.display = '';
     var html = '<table class="log-table"><thead><tr>'
-      + '<th>Waktu</th><th>Nama</th><th>Lokasi</th><th>Referrer</th><th>User Agent</th>'
+      + '<th>Waktu</th><th>Nama</th><th>Lokasi</th><th>Referrer</th><th>User Agent</th><th></th>'
       + '</tr></thead><tbody>';
     rows.forEach(function(r){
       var time = r.time ? new Date(r.time).toLocaleString('id-ID') : '';
       html += '<tr><td>' + escapeHtml(time) + '</td><td>' + escapeHtml(r.name)
         + '</td><td class="ua">' + escapeHtml(r.location || '-') + '</td><td>' + escapeHtml(r.referrer)
-        + '</td><td class="ua">' + escapeHtml(r.userAgent) + '</td></tr>';
+        + '</td><td class="ua">' + escapeHtml(r.userAgent)
+        + '</td><td><button class="log-del" type="button" data-time="' + escapeHtml(r.time) + '">Hapus</button></td></tr>';
     });
     html += '</tbody></table>';
     logBody.innerHTML = html;
   }
 
+  // password hanya disimpan di memori selama dialog dipakai, untuk aksi hapus
+  var logKey = '';
+  var logClear = document.getElementById('logClear');
+
+  function runAction(params, confirmText){
+    if (!window.confirm(confirmText)) return;
+    logBody.innerHTML = '<div class="log-loading">Menghapus...</div>';
+    fetch(LOG_URL + '?key=' + encodeURIComponent(logKey) + params)
+      .then(function(res){ return res.json(); })
+      .then(function(data){
+        if (data.status !== 'ok') {
+          logBody.innerHTML = '<div class="log-error">Gagal menghapus' + (data.message ? ': ' + escapeHtml(data.message) : '.') + '</div>';
+          return;
+        }
+        fetchAndShowLog(logKey);
+      })
+      .catch(function(){
+        logBody.innerHTML = '<div class="log-error">Gagal menghapus.</div>';
+      });
+  }
+
+  logBody.addEventListener('click', function(e){
+    var btn = e.target.closest('.log-del');
+    if (!btn) return;
+    runAction('&action=delete&time=' + encodeURIComponent(btn.getAttribute('data-time')),
+      'Hapus kunjungan ini dari log?');
+  });
+
+  logClear.addEventListener('click', function(){
+    runAction('&action=clear', 'Hapus SEMUA kunjungan dari log? Tindakan ini tidak bisa dibatalkan.');
+  });
+
   function fetchAndShowLog(key){
+    logKey = key;
+    logClear.style.display = 'none';
     logOverlay.classList.add('open');
     logBody.innerHTML = '<div class="log-loading">Memuat...</div>';
 
@@ -570,6 +615,7 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   }
 
   window.closeVisitorLog = function(){
+    logKey = '';
     logOverlay.classList.remove('open');
   };
 
