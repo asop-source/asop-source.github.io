@@ -187,6 +187,16 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
   .tag{font-size:9.5pt}
 }
 
+/* layar lebar: Key Achievements selebar halaman supaya kolom kiri dan sidebar sama tinggi (print tidak terpengaruh) */
+@media screen and (min-width:821px){
+  .col-main{display:contents}
+  .col-main>section:first-child{grid-column:1/-1;grid-row:1;margin-bottom:6mm}
+  .col-main>section:first-child .ach{columns:2;column-gap:9mm}
+  .col-main>section:first-child .ach li{break-inside:avoid}
+  .col-main>section:nth-child(2){grid-column:1;grid-row:2}
+  .col-aside{grid-column:2;grid-row:2}
+}
+
 /* ============ visitor gate ============ */
 .gate-overlay{position:fixed;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(3px);
   display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
