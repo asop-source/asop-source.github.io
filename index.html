@@ -229,6 +229,7 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   white-space:nowrap}
 .log-table td.ua{white-space:normal;word-break:break-all;min-width:220px}
 .log-empty,.log-loading,.log-error{padding:20px;text-align:center;color:var(--soft);font-size:9.3pt}
+.log-warn{color:#b42318;background:#fef3f2;border-bottom:1px solid #fecdca;padding:10px 14px;text-align:left}
 
 /* ============ print — A4 ============ */
 @page{size:A4;margin:0}
@@ -588,6 +589,13 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
       .then(function(data){
         if (data.status !== 'ok') {
           logBody.innerHTML = '<div class="log-error">Gagal menghapus' + (data.message ? ': ' + escapeHtml(data.message) : '.') + '</div>';
+          return;
+        }
+        if (data.rows) {
+          // Server membalas dengan daftar log, berarti perintah hapus diabaikan.
+          renderRows(data.rows);
+          logBody.insertAdjacentHTML('afterbegin', '<div class="log-error log-warn">Belum terhapus: fitur hapus belum aktif di Apps Script. ' +
+            'Tempel kode hapus di Code.gs, lalu Deploy &rarr; Manage deployments &rarr; Edit &rarr; New version.</div>');
           return;
         }
         fetchAndShowLog(logKey);
