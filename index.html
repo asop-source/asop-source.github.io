@@ -30,7 +30,7 @@
   --paper:#fff;
   --canvas:#e5e9ef;
   --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  --scale:.88;
+  --scale:.96;
   --page-w:210mm;
   --side-w:72mm;
 }
@@ -58,8 +58,9 @@ a{color:inherit}
   display:grid;grid-template-columns:var(--side-w) 1fr;
   box-shadow:0 1px 2px rgba(15,23,42,.05),0 16px 44px rgba(15,23,42,.14)}
 /* latar sidebar sebagai elemen terpisah: di print dibuat fixed supaya ada di setiap halaman */
-.side-bg{position:absolute;left:0;top:0;bottom:0;width:var(--side-w);background:var(--side)}
-.side{position:relative;color:var(--side-ink);padding:12mm 6mm 12mm}
+/* sidebar setinggi kolom utama; isinya direntangkan supaya tidak ada area kosong */
+.side{position:relative;background:var(--side);color:var(--side-ink);padding:12mm 6mm 12mm;display:flex;flex-direction:column}
+.side-rest{flex:1;display:flex;flex-direction:column;justify-content:space-between}
 .main{padding:12mm 11mm 12mm 10mm;min-width:0}
 
 /* ---- sidebar ---- */
@@ -88,6 +89,10 @@ a{color:inherit}
 .plist a,.plist b{font-family:var(--mono);font-size:7.8pt;font-weight:600;color:var(--teal-lt);text-decoration:none}
 .plist a:hover{text-decoration:underline}
 .plist span{display:block;color:var(--side-soft)}
+.plist-main{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm 5mm}
+.plist-main li{margin:0;padding-left:2.6mm;border-left:2px solid var(--teal)}
+.plist-main a,.plist-main b{color:var(--navy)}
+.plist-main span{color:var(--soft)}
 .edu-title{font-size:8.8pt;font-weight:700;color:#fff;line-height:1.3}
 .edu-meta{font-size:8pt;color:var(--side-soft);margin-top:1px}
 .fact{display:flex;justify-content:space-between;gap:6px;font-size:8pt;padding:2.5px 0;border-bottom:1px solid rgba(255,255,255,.08)}
@@ -143,10 +148,10 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
 .main .tag{font-family:var(--mono);font-size:7.2pt;font-weight:500;color:var(--navy);background:var(--wash);
   border:1px solid #d5dee8;border-radius:3px;padding:1px 5px}
 
-.projects{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm}
-.proj{background:var(--wash);border:1px solid var(--rule);border-left:2px solid var(--teal);border-radius:3px;padding:2mm 2.6mm;break-inside:avoid;page-break-inside:avoid}
-.proj b{display:block;font-size:8.6pt;font-weight:700;color:var(--ink);line-height:1.3}
-.proj span{display:block;font-size:7.7pt;line-height:1.4;color:var(--soft);margin-top:1px}
+.projects{display:flex;flex-direction:column;gap:2.4mm}
+.proj{padding-left:2.6mm;border-left:2px solid var(--teal-lt);break-inside:avoid;page-break-inside:avoid}
+.proj b{display:block;font-size:8.1pt;font-weight:700;color:#fff;line-height:1.3}
+.proj span{display:block;font-size:7.4pt;line-height:1.4;color:var(--side-soft);margin-top:1px}
 
 /* ============ layar sempit ============ */
 @media screen and (max-width:820px){
@@ -154,11 +159,10 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   body{font-size:10.5pt}
   .toolbar-in{padding:9px 14px}
   .sheet{display:flex;flex-direction:column;margin:0;box-shadow:none}
-  .side-bg{display:none}
   .side{display:contents}
   .side-top{order:1;background:var(--side);color:var(--side-ink);padding:28px 20px 24px}
   .main{order:2;padding:24px 20px}
-  .side-rest{order:3;background:var(--side);color:var(--side-ink);padding:4px 20px 30px}
+  .side-rest{display:block;order:3;background:var(--side);color:var(--side-ink);padding:4px 20px 30px}
   .side-rest .side-block{margin-top:24px}
   .portrait{width:100px;height:100px;margin:0}
   .name{margin-top:18px}
@@ -168,6 +172,7 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   .ach li{grid-template-columns:1fr;gap:4px}
   .ach p,.entry li,.tagline{font-size:10.5pt}
   .projects{grid-template-columns:1fr}
+  .plist-main{grid-template-columns:1fr}
   .proj b{font-size:10.5pt}.proj span{font-size:9.6pt}
   .skill-name,.fact,.plist,.edu-meta{font-size:10pt}
   .side .tag,.main .tag{font-size:9pt}
@@ -216,7 +221,10 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   html,body{background:#fff}
   .toolbar,.gate-overlay,.log-overlay{display:none !important}
   .sheet{width:calc(210mm / var(--scale));zoom:var(--scale);margin:0;box-shadow:none}
-  .side-bg{position:fixed;top:0;bottom:0;height:auto}
+  /* latar sidebar digambar di sheet agar tersambung di semua halaman */
+  .sheet{background:linear-gradient(90deg,var(--side) 0,var(--side) var(--side-w),#fff var(--side-w))}
+  .side{background:transparent}
+  .side-rest{justify-content:flex-start}
   .side,.main{-webkit-box-decoration-break:clone;box-decoration-break:clone}
   a{text-decoration:none}
   h2.sec,.sh{break-after:avoid;page-break-after:avoid}
@@ -243,7 +251,6 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
 </div>
 
 <article class="sheet">
-  <div class="side-bg" aria-hidden="true"></div>
 
   <aside class="side">
     <div class="side-top">
@@ -289,18 +296,6 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
       </div>
 
       <div class="side-block">
-        <h3 class="sh">Portfolio</h3>
-        <ul class="plist">
-          <li><a href="https://itsms.gavit.id" target="_blank" rel="noopener">itsms.gavit.id</a><span>ITSM platform, built in-house</span></li>
-          <li><a href="https://loyalti.multi-kabel.com" target="_blank" rel="noopener">loyalti.multi-kabel.com</a><span>National loyalty program</span></li>
-          <li><a href="https://yellow.gavit.id" target="_blank" rel="noopener">yellow.gavit.id</a><span>YellowMetric survey platform</span></li>
-          <li><a href="http://cms.gavit.id" target="_blank" rel="noopener">cms.gavit.id</a><span>Internal CMS platform</span></li>
-          <li><a href="https://github.com/asop-source/Certificate-IT" target="_blank" rel="noopener">Odoo ERP</a><span>Community, self-hosted; 300 users across 4 of the 6 group companies</span></li>
-          <li><b>Accurate &amp; Microsoft 365</b><span>Business application ownership</span></li>
-        </ul>
-      </div>
-
-      <div class="side-block">
         <h3 class="sh">Languages</h3>
           <div class="skill"><div class="skill-name">Indonesian &mdash; Native</div><svg class="meter" viewBox="0 0 100 4" preserveAspectRatio="none" aria-hidden="true"><rect width="100" height="4" rx="2" fill="#24344b"/><rect width="100" height="4" rx="2" fill="url(#gbar)"/></svg></div>
           <div class="skill"><div class="skill-name">English &mdash; Professional working</div><svg class="meter" viewBox="0 0 100 4" preserveAspectRatio="none" aria-hidden="true"><rect width="100" height="4" rx="2" fill="#24344b"/><rect width="65" height="4" rx="2" fill="url(#gbar)"/></svg></div>
@@ -324,6 +319,24 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
           <div class="fact"><dt>Height</dt><dd>166 cm</dd></div>
           <div class="fact"><dt>Driving license</dt><dd>SIM A</dd></div>
         </dl>
+      </div>
+
+      <div class="side-block">
+        <h3 class="sh">Industry Coverage</h3>
+        <div class="projects">
+        <div class="proj"><b>Retail</b><span>POS, CRM, Sales, Purchase, Inventory, Accounting, Promotions, Pricelist, Loyalty, E-Commerce, Payment Gateway.</span></div>
+        <div class="proj"><b>Manufacturing</b><span>MRP, BoM, Routing, Work Orders, Production Planning, Quality, Lot Traceability, Costing.</span></div>
+        <div class="proj"><b>Distribution &amp; Supply Chain</b><span>Multi-warehouse WMS, Replenishment Rules, Logistics, Shipping, Stock Valuation.</span></div>
+        <div class="proj"><b>Human Resources</b><span>Recruitment, Onboarding, Attendance, Shift &amp; Overtime, Payroll, Leave, Appraisal, Expense.</span></div>
+        <div class="proj"><b>Healthcare</b><span>Clinics &amp; hospitals: Medical Records, Appointments, EMR, Billing, Insurance, Pharmacy.</span></div>
+        <div class="proj"><b>Education &amp; LMS</b><span>eLearning, Course &amp; Content Management, Assessment, Certification, Student Portal.</span></div>
+        <div class="proj"><b>Digital Services &amp; Fintech</b><span>Subscription Management, Automated Billing, Payment Gateway, Customer Portal, API Integration.</span></div>
+        <div class="proj"><b>Logistics &amp; Transportation</b><span>Fleet Management, Route Planning, Delivery Orders, Shipment Tracking, Proof of Delivery, Fuel Costing.</span></div>
+        <div class="proj"><b>Hospitality Management</b><span>Hotel meeting room &amp; event facility booking, scheduling, reporting, system integration.</span></div>
+        <div class="proj"><b>Digital Signage</b><span>Centralized content management, device provisioning, playlists &amp; scheduling, multi-location deployment, monitoring.</span></div>
+        <div class="proj"><b>Automotive Dealership</b><span>Motorcycle sales, lead handling, test-ride booking, unit tracking, invoicing, reporting.</span></div>
+        <div class="proj"><b>IT Service Management</b><span>Ticketing, incident &amp; service request handling, SLA tracking, asset/CMDB, WhatsApp notification bot, reporting dashboard.</span></div>
+        </div>
       </div>
     </div>
   </aside>
@@ -432,23 +445,18 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
     </section>
 
     <section>
-      <h2 class="sec"><i>03</i>Project Experience &mdash; Industry Coverage</h2>
-      <div class="projects">
-        <div class="proj"><b>Retail</b><span>POS, CRM, Sales, Purchase, Inventory, Accounting, Promotions, Pricelist, Loyalty, E-Commerce, Payment Gateway.</span></div>
-        <div class="proj"><b>Manufacturing</b><span>MRP, BoM, Routing, Work Orders, Production Planning, Quality, Lot Traceability, Costing.</span></div>
-        <div class="proj"><b>Distribution &amp; Supply Chain</b><span>Multi-warehouse WMS, Replenishment Rules, Logistics, Shipping, Stock Valuation.</span></div>
-        <div class="proj"><b>Human Resources</b><span>Recruitment, Onboarding, Attendance, Shift &amp; Overtime, Payroll, Leave, Appraisal, Expense.</span></div>
-        <div class="proj"><b>Healthcare</b><span>Clinics &amp; hospitals: Medical Records, Appointments, EMR, Billing, Insurance, Pharmacy.</span></div>
-        <div class="proj"><b>Education &amp; LMS</b><span>eLearning, Course &amp; Content Management, Assessment, Certification, Student Portal.</span></div>
-        <div class="proj"><b>Digital Services &amp; Fintech</b><span>Subscription Management, Automated Billing, Payment Gateway, Customer Portal, API Integration.</span></div>
-        <div class="proj"><b>Logistics &amp; Transportation</b><span>Fleet Management, Route Planning, Delivery Orders, Shipment Tracking, Proof of Delivery, Fuel Costing.</span></div>
-        <div class="proj"><b>Hospitality Management</b><span>Hotel meeting room &amp; event facility booking, scheduling, reporting, system integration.</span></div>
-        <div class="proj"><b>Digital Signage</b><span>Centralized content management, device provisioning, playlists &amp; scheduling, multi-location deployment, monitoring.</span></div>
-        <div class="proj"><b>Automotive Dealership</b><span>Motorcycle sales, lead handling, test-ride booking, unit tracking, invoicing, reporting.</span></div>
-        <div class="proj"><b>IT Service Management</b><span>Ticketing, incident &amp; service request handling, SLA tracking, asset/CMDB, WhatsApp notification bot, reporting dashboard.</span></div>
-      </div>
+      <h2 class="sec"><i>03</i>Platforms &amp; Systems Owned</h2>
+      <ul class="plist plist-main">
+          <li><a href="https://itsms.gavit.id" target="_blank" rel="noopener">itsms.gavit.id</a><span>ITSM platform, built in-house</span></li>
+          <li><a href="https://loyalti.multi-kabel.com" target="_blank" rel="noopener">loyalti.multi-kabel.com</a><span>National loyalty program</span></li>
+          <li><a href="https://yellow.gavit.id" target="_blank" rel="noopener">yellow.gavit.id</a><span>YellowMetric survey platform</span></li>
+          <li><a href="http://cms.gavit.id" target="_blank" rel="noopener">cms.gavit.id</a><span>Internal CMS platform</span></li>
+          <li><a href="https://github.com/asop-source/Certificate-IT" target="_blank" rel="noopener">Odoo ERP</a><span>Community, self-hosted; 300 users across 4 of the 6 group companies</span></li>
+          <li><b>Accurate &amp; Microsoft 365</b><span>Business application ownership</span></li>
+        </ul>
     </section>
   </main>
+
 </article>
 
 <div class="gate-overlay" id="loginOverlay">
