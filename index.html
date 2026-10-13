@@ -288,7 +288,7 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
         <h2 class="sec">Key Achievements</h2>
         <ul class="ach">
           <li><b>Revenue target tripled &mdash; Rp 4 billion to Rp 12 billion/year</b> &mdash; built and ran a national-scale customer loyalty program (<a href="https://loyalti.multi-kabel.com" target="_blank" rel="noopener">loyalti.multi-kabel.com</a>) in-house end to end, saving <b>Rp 60 million</b> versus buying the platform.</li>
-          <li><b>Rp 350 million/year license saving</b> &mdash; led a zero-downtime migration of <b>98 licensed users across a 4-company group</b> from Odoo Enterprise to self-hosted Odoo Community, with full business functionality retained.</li>
+          <li><b>Rp 350 million/year license saving</b> &mdash; led a zero-downtime migration of <b>98 licensed users across 4 group companies</b> from Odoo Enterprise to self-hosted Odoo Community, with full business functionality retained.</li>
           <li><b>Rp 300 million cost avoidance</b> &mdash; designed and shipped an in-house IT Service Management platform (<a href="https://itsms.gavit.id" target="_blank" rel="noopener">itsms.gavit.id</a>) in 6 months, replacing a commercial ITSM product; now the company's primary support system.</li>
           <li><b>Rp 56 million saved &mdash; 80% under vendor quote</b> &mdash; delivered a full network infrastructure rollout for <b>Rp 14 million</b> against a <b>Rp 70 million</b> vendor proposal, using internal manpower.</li>
           <li><b>Rp 50 million/year infrastructure saving</b> &mdash; moved cloud-hosted workloads to a self-managed on-premise stack (Docker, Nginx, Linux) while keeping availability and control.</li>
@@ -392,7 +392,7 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
           <li><a href="https://loyalti.multi-kabel.com" target="_blank" rel="noopener">loyalti.multi-kabel.com</a> &mdash; national loyalty program</li>
           <li><a href="https://yellow.gavit.id" target="_blank" rel="noopener">yellow.gavit.id</a> &mdash; YellowMetric survey platform</li>
           <li><a href="http://cms.gavit.id" target="_blank" rel="noopener">cms.gavit.id</a> &mdash; internal CMS platform</li>
-          <li><a href="https://github.com/asop-source/Certificate-IT" target="_blank" rel="noopener">Odoo ERP</a> &mdash; Community, self-hosted; 300 users across 4 companies</li>
+          <li><a href="https://github.com/asop-source/Certificate-IT" target="_blank" rel="noopener">Odoo ERP</a> &mdash; Community, self-hosted; 300 users across 4 of the 6 group companies</li>
           <li>Accurate Accounting &amp; Microsoft 365 &mdash; business application ownership</li>
         </ul>
       </div>
@@ -430,7 +430,7 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
         <h2 class="sec">Education</h2>
         <div class="edu-title">Bachelor of Computer Engineering</div>
         <div class="edu-meta">STMIK Rosma Karawang, Jawa Barat</div>
-        <div class="edu-meta">2014 &ndash; 2018 &middot; GPA 2.9 / 4.0</div>
+        <div class="edu-meta">2014 &ndash; 2018</div>
       </div>
 
       <div class="aside-block">
@@ -447,10 +447,8 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
           <div class="fact"><dt>Nationality</dt><dd>Indonesian</dd></div>
           <div class="fact"><dt>Marital status</dt><dd>Married</dd></div>
           <div class="fact"><dt>Height</dt><dd>166 cm</dd></div>
-          <div class="fact"><dt>Weight</dt><dd>94 kg</dd></div>
           <div class="fact"><dt>Driving license</dt><dd>SIM A</dd></div>
         </dl>
-        <div class="edu-meta" style="margin-top:4px">Kluster Karahayuan Blok E9 No. 33, Desa Klari, Kec. Klari, Kab. Karawang 41371, Jawa Barat, Indonesia</div>
       </div>
 
     </aside>
@@ -476,17 +474,6 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
   </section>
   </div>
 </article>
-
-<div class="gate-overlay open" id="gateOverlay">
-  <div class="gate-card">
-    <h3>Selamat datang</h3>
-    <p>Masukkan nama Anda untuk melihat CV ini.</p>
-    <form id="gateForm">
-      <input type="text" id="gateName" placeholder="Nama Anda" required autofocus>
-      <button type="submit" id="gateSubmit">Lihat CV</button>
-    </form>
-  </div>
-</div>
 
 <div class="gate-overlay" id="loginOverlay">
   <div class="gate-card">
@@ -515,73 +502,24 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
 <script>
 (function(){
   var LOG_URL = 'https://script.google.com/macros/s/AKfycbwmFTpVTouPV7LRxbci7TmPgKbe4bI0gwtVu4SYBOjcS-P7zlVqW7fPqx5vB2eH5f1C/exec';
-  var ACCESS_KEY = 'cb8ef8bed44fc6c14bb21659ad8d3d74';
-  var ANALYTICS_PASSWORD = 'asopgantengsekali';
-  var overlay = document.getElementById('gateOverlay');
-  var form = document.getElementById('gateForm');
-  var gateSubmit = document.getElementById('gateSubmit');
 
-  if (sessionStorage.getItem('cvVisitorLogged')) {
-    overlay.classList.remove('open');
+  // catat kunjungan secara anonim, sekali per sesi, tanpa nama dan tanpa lokasi
+  var logged = false;
+  try { logged = !!sessionStorage.getItem('cvVisitorLogged'); } catch (e) {}
+  if (!logged) {
+    try { sessionStorage.setItem('cvVisitorLogged', '1'); } catch (e) {}
+    fetch(LOG_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: {'Content-Type': 'text/plain'},
+      body: JSON.stringify({
+        name: '(anonymous)',
+        referrer: document.referrer || '(direct)',
+        userAgent: navigator.userAgent,
+        location: ''
+      })
+    }).catch(function(){});
   }
-
-  function getLocation(){
-    return new Promise(function(resolve){
-      if (!navigator.geolocation) { resolve(''); return; }
-
-      var done = false;
-      var timer = setTimeout(function(){
-        if (!done) { done = true; resolve(''); }
-      }, 8000);
-
-      navigator.geolocation.getCurrentPosition(
-        function(pos){
-          if (done) return;
-          done = true;
-          clearTimeout(timer);
-          var lat = pos.coords.latitude.toFixed(5);
-          var lon = pos.coords.longitude.toFixed(5);
-          fetch('https://nominatim.openstreetmap.org/reverse?format=json&lat=' + lat + '&lon=' + lon)
-            .then(function(res){ return res.json(); })
-            .then(function(data){
-              var address = data && data.display_name ? data.display_name : '';
-              resolve(lat + ', ' + lon + (address ? ' - ' + address : ''));
-            })
-            .catch(function(){ resolve(lat + ', ' + lon); });
-        },
-        function(){
-          if (done) return;
-          done = true;
-          clearTimeout(timer);
-          resolve('');
-        },
-        { timeout: 7000, maximumAge: 300000 }
-      );
-    });
-  }
-
-  form.addEventListener('submit', function(e){
-    e.preventDefault();
-    var name = document.getElementById('gateName').value.trim();
-    if (!name) return;
-
-    sessionStorage.setItem('cvVisitorLogged', '1');
-    overlay.classList.remove('open');
-
-    getLocation().then(function(location){
-      fetch(LOG_URL, {
-        method: 'POST',
-        mode: 'no-cors',
-        headers: {'Content-Type': 'text/plain'},
-        body: JSON.stringify({
-          name: name,
-          referrer: document.referrer || '(direct)',
-          userAgent: navigator.userAgent,
-          location: location
-        })
-      }).catch(function(){});
-    });
-  });
 
   var logOverlay = document.getElementById('logOverlay');
   var logBody = document.getElementById('logBody');
@@ -610,11 +548,11 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
     logBody.innerHTML = html;
   }
 
-  function fetchAndShowLog(){
+  function fetchAndShowLog(key){
     logOverlay.classList.add('open');
     logBody.innerHTML = '<div class="log-loading">Memuat...</div>';
 
-    fetch(LOG_URL + '?key=' + encodeURIComponent(ACCESS_KEY))
+    fetch(LOG_URL + '?key=' + encodeURIComponent(key))
       .then(function(res){ return res.json(); })
       .then(function(data){
         if (data.status !== 'ok') {
@@ -650,13 +588,9 @@ h2.sec::before{content:"";width:0;height:0;flex:0 0 9px;border:4.5px solid var(-
     e.preventDefault();
     var password = document.getElementById('loginPassword').value;
 
-    if (password !== ANALYTICS_PASSWORD) {
-      loginError.style.display = 'block';
-      return;
-    }
-
+    // password diperiksa oleh Apps Script, tidak disimpan di halaman ini
     loginOverlay.classList.remove('open');
-    fetchAndShowLog();
+    fetchAndShowLog(password);
   });
 
   loginOverlay.addEventListener('click', function(e){
