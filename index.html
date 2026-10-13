@@ -222,6 +222,10 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
 .log-del:hover,.log-clear:hover{background:#fef3f2}
 .log-del:disabled,.log-clear:disabled{opacity:.5;cursor:default}
 .log-body{overflow:auto;padding:0 20px 20px}
+.pdf-card{max-width:860px;max-height:92vh}
+.pdf-actions{display:flex;align-items:center;gap:8px}
+.pdf-body{overflow:auto;background:#e5e9ef;padding:16px;display:flex;flex-direction:column;align-items:center;gap:14px;border-radius:0 0 10px 10px}
+.pdf-body img{display:block;width:100%;max-width:794px;height:auto;background:#fff;box-shadow:0 4px 18px rgba(15,23,42,.18)}
 .log-table{width:100%;border-collapse:collapse;font-size:8.6pt}
 .log-table th{text-align:left;padding:7px 8px;border-bottom:2px solid var(--rule);color:var(--navy);
   font-weight:700;white-space:nowrap;position:sticky;top:0;background:#fff}
@@ -237,7 +241,7 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   /* latar halaman: kolom sidebar gelap penuh di setiap halaman */
   html{background:linear-gradient(90deg,#0f1b2d calc(var(--side-w) * var(--scale)),#fff 0)}
   body{background:transparent}
-  .toolbar,.gate-overlay,.log-overlay{display:none !important}
+  .toolbar,.gate-overlay,.log-overlay,.pdf-overlay{display:none !important}
   .sheet{width:calc(210mm / var(--scale));zoom:var(--scale);margin:0;box-shadow:none}
   /* latar sidebar digambar di sheet agar tersambung di semua halaman */
   .sheet{background:transparent}
@@ -255,6 +259,22 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
 </head>
 <body>
 
+<div class="log-overlay pdf-overlay" id="pdfOverlay" onclick="if(event.target===this)closePdfPreview()">
+  <div class="log-card pdf-card">
+    <div class="log-head">
+      <h3>Preview CV</h3>
+      <div class="pdf-actions">
+        <a class="btn btn-primary" href="Asop-CV.pdf" download="Asop-CV.pdf">
+          <svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>Download</a>
+        <button class="log-close" type="button" onclick="closePdfPreview()" aria-label="Tutup">&times;</button>
+      </div>
+    </div>
+    <div class="pdf-body">
+      <img src="cv-preview-1.jpg" alt="CV halaman 1" width="1240" height="1754" loading="lazy">
+      <img src="cv-preview-2.jpg" alt="CV halaman 2" width="1240" height="1754" loading="lazy">
+    </div>
+  </div>
+</div>
 <svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
 <linearGradient id="gbar" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="100" y2="0"><stop offset="0" stop-color="#14b8a6"/><stop offset="1" stop-color="#5eead4"/></linearGradient>
 </defs></svg>
@@ -265,10 +285,8 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
       <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>Email</a>
     <button class="btn btn-ghost" onclick="openVisitorLog()">
       <svg viewBox="0 0 24 24"><path d="M3 3v18h18v-2H5V3H3zm4 14h2v-6H7v6zm4 0h2V7h-2v10zm4 0h2v-4h-2v4z"/></svg>Analytics</button>
-    <a class="btn btn-ghost" href="Asop-CV.pdf" target="_blank" rel="noopener">
-      <svg viewBox="0 0 24 24"><path d="M12 5C6.5 5 2.7 9.4 1.5 12c1.2 2.6 5 7 10.5 7s9.3-4.4 10.5-7C21.3 9.4 17.5 5 12 5zm0 11a4 4 0 110-8 4 4 0 010 8zm0-6a2 2 0 100 4 2 2 0 000-4z"/></svg>Preview PDF</a>
-    <a class="btn btn-primary" href="Asop-CV.pdf" download="Asop-CV.pdf">
-      <svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>Download PDF</a>
+    <button class="btn btn-primary" type="button" onclick="openPdfPreview()">
+      <svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>Download PDF</button>
   </div>
 </div>
 
@@ -672,6 +690,11 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
 })();
 </script>
 
+<script>
+  function openPdfPreview(){ document.getElementById('pdfOverlay').classList.add('open'); }
+  function closePdfPreview(){ document.getElementById('pdfOverlay').classList.remove('open'); }
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closePdfPreview(); });
+</script>
 </body>
 </html>
 
