@@ -208,6 +208,8 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
 .gate-card button:hover{background:var(--navy-deep)}
 .gate-card button:disabled{opacity:.6;cursor:default}
 .gate-error{font-size:8.6pt;color:#c0392b;margin:-4px 0 10px}
+.gate-card .gate-skip{margin-top:8px;background:none;color:var(--soft);font-weight:500}
+.gate-card .gate-skip:hover{background:none;color:var(--ink);text-decoration:underline}
 
 /* ============ analytics modal ============ */
 .log-overlay{position:fixed;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(3px);
@@ -509,10 +511,11 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
 <div class="gate-overlay open" id="gateOverlay">
   <div class="gate-card">
     <h3>Selamat datang</h3>
-    <p>Masukkan nama Anda untuk melihat CV ini.</p>
+    <p>Boleh isi nama Anda sebelum melihat CV ini (opsional).</p>
     <form id="gateForm">
       <input type="text" id="gateName" placeholder="Nama Anda" required autofocus>
       <button type="submit">Lihat CV</button>
+      <button type="button" class="gate-skip" id="gateSkip">Lewati</button>
     </form>
   </div>
 </div>
@@ -559,6 +562,14 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
     e.preventDefault();
     var name = document.getElementById('gateName').value.trim();
     if (!name) return;
+    logVisit(name);
+  });
+
+  document.getElementById('gateSkip').addEventListener('click', function(){
+    logVisit('(tanpa nama)');
+  });
+
+  function logVisit(name){
     try { sessionStorage.setItem('cvVisitorLogged', '1'); } catch (e) {}
     overlay.classList.remove('open');
     fetch(LOG_URL, {
@@ -572,7 +583,7 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
         location: ''
       })
     }).catch(function(){});
-  });
+  }
 
   var logOverlay = document.getElementById('logOverlay');
   var logBody = document.getElementById('logBody');
