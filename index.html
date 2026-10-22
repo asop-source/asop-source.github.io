@@ -93,7 +93,8 @@ a{color:inherit}
 .side .stack .tag:not(:last-child)::after{content:",";color:var(--side-soft)}
 .plist{list-style:none;font-size:8pt}
 .plist li{margin-bottom:4px;line-height:1.35}
-.plist a,.plist b{font-family:var(--mono);font-size:7.8pt;font-weight:600;color:var(--teal-lt);text-decoration:none}
+.plist a,.plist b{font-family:var(--mono);font-size:7.8pt;letter-spacing:-.02em;font-weight:600;color:var(--teal-lt);text-decoration:none}
+.plist a{white-space:nowrap}
 .plist a:hover{text-decoration:underline}
 .plist span{display:block;color:var(--side-soft)}
 .plist-main{display:grid;grid-template-columns:repeat(3,1fr);gap:3mm 5mm}
@@ -401,7 +402,7 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
       <ul class="ach">
         <li><div class="fig">3&times;<small>revenue target</small></div><p><b>Revenue target tripled</b> &mdash; built and ran a national-scale customer loyalty program (<a href="https://loyalti.multi-kabel.com" target="_blank" rel="noopener">loyalti.multi-kabel.com</a>) in-house, end to end, instead of buying a platform.</p></li>
         <li><div class="fig">98<small>users migrated</small></div><p><b>Zero-downtime ERP migration</b> &mdash; moved 98 licensed users across 4 group companies from Odoo Enterprise to self-hosted Odoo Community, with full business functionality retained.</p></li>
-        <li><div class="fig">6 mo<small>to production</small></div><p><b>In-house IT Service Management platform</b> &mdash; designed and shipped <a href="https://itsms.gavit.id" target="_blank" rel="noopener">itsms.gavit.id</a> in 6 months, replacing a commercial ITSM product; now the company's primary support system.</p></li>
+        <li><div class="fig">6 mo<small>to production</small></div><p><b>In-house IT Service Management platform</b> &mdash; designed and shipped <a href="https://ticketing.multi-kabel.com" target="_blank" rel="noopener">ticketing.multi-kabel.com</a> in 6 months, replacing a commercial ITSM product; now the company's primary support system.</p></li>
         <li><div class="fig">80%<small>under vendor quote</small></div><p><b>Network infrastructure rollout</b> &mdash; delivered a full network rollout with internal manpower at 80% below the vendor's proposal.</p></li>
         <li><div class="fig">On-prem<small>self-managed</small></div><p><b>Cloud to on-premise migration</b> &mdash; moved cloud-hosted workloads to a self-managed stack (Docker, Nginx, Linux) while keeping availability and control.</p></li>
       </ul>
@@ -488,7 +489,9 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
     <section>
       <h2 class="sec"><i>03</i>Platforms &amp; Systems Owned</h2>
       <ul class="plist plist-main">
-          <li><a href="https://itsms.gavit.id" target="_blank" rel="noopener">itsms.gavit.id</a><span>ITSM platform, built in-house</span></li>
+          <li><a href="https://ticketing.multi-kabel.com" target="_blank" rel="noopener">ticketing.multi-kabel.com</a><span>ITSM platform, built in-house</span></li>
+          <li><a href="https://ai.multi-kabel.com" target="_blank" rel="noopener">ai.multi-kabel.com</a><span>AI Assistant, built in-house</span></li>
+          <li><a href="https://gebyar.multi-kabel.com" target="_blank" rel="noopener">gebyar.multi-kabel.com</a><span>Gebyar, national-scale loyalty program</span></li>
           <li><a href="https://loyalti.multi-kabel.com" target="_blank" rel="noopener">loyalti.multi-kabel.com</a><span>National loyalty program</span></li>
           <li><a href="https://yellow.gavit.id" target="_blank" rel="noopener">yellow.gavit.id</a><span>YellowMetric survey platform</span></li>
           <li><a href="http://cms.gavit.id" target="_blank" rel="noopener">cms.gavit.id</a><span>Internal CMS platform</span></li>
