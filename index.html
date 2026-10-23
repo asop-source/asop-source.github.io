@@ -156,6 +156,14 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
 
 
 /* ============ layar sempit ============ */
+/* PDF: jabatan sekarang lebar penuh, jabatan sebelumnya dua kolom */
+@media print{
+  .timeline{display:grid;grid-template-columns:1fr 1fr;column-gap:7mm;padding-left:0}
+  .timeline::before{display:none}
+  .timeline .entry{padding:0 0 4mm 4.2mm;border-left:1.5px solid var(--rule)}
+  .timeline .entry::before{left:-1.35mm}
+  .timeline .entry:first-child{grid-column:1/-1}
+}
 /* web desktop: sidebar sedikit lebih besar supaya mengisi setinggi kolom utama */
 @media screen and (min-width:821px){
   .side-rest{zoom:1.12}
@@ -257,6 +265,7 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   .ach li,.skill,.fact,.glance,.edu-title{break-inside:avoid;page-break-inside:avoid}
   /* versi PDF satu lembar: bagian pendukung hanya tampil di web */
   .np{display:none !important}
+  .timeline .entry:not(:first-child) .entry-note.np{display:block !important}
   :root{--scale:.84}
   .side{padding:7mm 6mm 6mm}
   .side-rest{justify-content:space-between}
