@@ -82,6 +82,10 @@ a{color:inherit}
 .skill-name{font-size:8.1pt;color:var(--side-ink);line-height:1.3;font-weight:500}
 .meter{display:block;width:100%;height:4px;margin-top:3px}
 .tags{display:flex;flex-wrap:wrap;gap:4px}
+.lead{list-style:none;font-size:7.8pt;line-height:1.45;color:var(--side-ink)}
+.lead li{position:relative;padding:2.4px 0 2.4px 3.2mm;border-bottom:1px solid rgba(255,255,255,.08)}
+.lead li:last-child{border-bottom:0}
+.lead li::before{content:"";position:absolute;left:0;top:50%;width:1.4mm;height:1.4mm;margin-top:-.7mm;border-radius:50%;background:var(--teal-lt)}
 .side .tag{font-family:var(--mono);font-size:7.2pt;font-weight:500;color:var(--side-ink);background:var(--side-2);
   border:1px solid #2a3c56;border-radius:3px;padding:1.5px 5px;line-height:1.4}
 .stack-group{display:grid;grid-template-columns:21mm minmax(0,1fr);gap:2mm;padding:2.4px 0;border-bottom:1px solid rgba(255,255,255,.08)}
@@ -173,6 +177,7 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   .stack-group{grid-template-columns:34% 1fr}
   .stack-label{font-size:8.5pt}
   .stack .tags{font-size:10pt}
+  .lead{font-size:10pt}
   .side .tag,.main .tag{font-size:9pt}
 }
 
@@ -246,11 +251,16 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   /* versi PDF satu lembar: bagian pendukung hanya tampil di web */
   .np{display:none !important}
   :root{--scale:.84}
-  .side{padding:9mm 6mm 8mm}
+  .side{padding:7mm 6mm 6mm}
   .side-rest{justify-content:space-between}
-  .portrait{width:27mm;height:27mm}
+  .portrait{width:24mm;height:24mm}
+  .stack-group{padding:1.8px 0}
   .name{margin-top:5mm}
-  .side-block{margin-top:4.5mm}
+  .side-block{margin-top:3.8mm}
+  .lead{display:grid;grid-template-columns:auto auto;justify-content:space-between;column-gap:3mm;font-size:7.1pt;line-height:1.35}
+  .lead li{padding:1.5px 0;white-space:nowrap}
+  .lead li:nth-last-child(2){border-bottom:0}
+  .lead li::before{display:none}
   .contacts{padding-top:3.5mm;gap:3px}
   .sh{margin-bottom:2mm}
   .glance{display:none}
@@ -322,6 +332,22 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
     </div>
 
     <div class="side-rest">
+      <div class="side-block">
+        <h3 class="sh">MIS Leadership</h3>
+        <ul class="lead">
+          <li>IT Strategy &amp; Roadmap</li>
+          <li>IT Policy &amp; Governance</li>
+          <li>MIS Team Leadership</li>
+          <li>Management Reporting</li>
+          <li>ERP &amp; Business Systems</li>
+          <li>IT Service Management</li>
+          <li>IT Spend &amp; Assets</li>
+          <li>Vendor Management</li>
+          <li>Security &amp; Continuity</li>
+          <li>Digital Transformation</li>
+        </ul>
+      </div>
+
       <div class="side-block">
         <h3 class="sh">Technology Stack</h3>
         <div class="stack">
