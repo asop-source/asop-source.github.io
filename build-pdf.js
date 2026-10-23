@@ -1,5 +1,5 @@
 // Regenerates Asop-CV.pdf from index.html (A4, same layout as the print view).
-// Also writes cv-preview-1.jpg / cv-preview-2.jpg for the on-page preview (needs pdftoppm from poppler-utils).
+// Also writes cv-preview-1.jpg for the on-page preview (needs pdftoppm from poppler-utils).
 // Run: node build-pdf.js
 const path = require('path');
 const { execFileSync } = require('child_process');
