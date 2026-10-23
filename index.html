@@ -138,7 +138,8 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
 .entry:last-child{padding-bottom:0}
 .entry::before{content:"";position:absolute;left:-6mm;top:1.2mm;width:2.6mm;height:2.6mm;border-radius:50%;
   background:#fff;border:2px solid var(--teal);box-sizing:border-box}
-.entry:first-child::before{background:var(--teal)}
+.tl-col:first-child .entry:first-child::before{background:var(--teal)}
+.tl-col + .tl-col{padding-top:4.5mm}
 .entry-when{font-family:var(--mono);font-size:7.3pt;font-weight:600;color:var(--teal)}
 .entry-when span{color:var(--soft);font-weight:500}
 .entry-when span::before{content:" · "}
@@ -156,13 +157,19 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
 
 
 /* ============ layar sempit ============ */
-/* PDF: jabatan sekarang lebar penuh, jabatan sebelumnya dua kolom */
+/* PDF: pengalaman dua kolom, 3 jabatan terbaru kiri dan 3 sebelumnya kanan, lengkap dengan deskripsi */
 @media print{
-  .timeline{display:grid;grid-template-columns:1fr 1fr;column-gap:7mm;padding-left:0}
+  .timeline{display:grid;grid-template-columns:1fr 1fr;column-gap:6mm;padding-left:0;align-items:start}
   .timeline::before{display:none}
-  .timeline .entry{padding:0 0 4mm 4.2mm;border-left:1.5px solid var(--rule)}
+  .tl-col + .tl-col{padding-top:0}
+  .timeline .entry{padding:0 0 2.4mm 4mm;border-left:1.5px solid var(--rule)}
   .timeline .entry::before{left:-1.35mm}
-  .timeline .entry:first-child{grid-column:1/-1}
+  .timeline .np{display:block !important}
+  .timeline .entry-cos{display:block;margin-top:1mm;font-size:6.9pt;line-height:1.45;color:var(--soft)}
+  .timeline .entry-cos .tag{display:inline;padding:0;border:0;background:none;font:inherit;color:inherit}
+  .timeline .entry-cos .tag:not(:last-child)::after{content:" · "}
+  .timeline .entry li{font-size:7.7pt;line-height:1.36}
+  .timeline .entry-note{font-size:7.4pt}
 }
 /* web desktop: sidebar sedikit lebih besar supaya mengisi setinggi kolom utama */
 @media screen and (min-width:821px){
@@ -265,7 +272,6 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   .ach li,.skill,.fact,.glance,.edu-title{break-inside:avoid;page-break-inside:avoid}
   /* versi PDF satu lembar: bagian pendukung hanya tampil di web */
   .np{display:none !important}
-  .timeline .entry:not(:first-child) .entry-note.np{display:block !important}
   :root{--scale:.84}
   .side{padding:7mm 6mm 6mm}
   .side-rest{justify-content:space-between}
@@ -282,7 +288,7 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   .glance{margin-bottom:4mm}
   .intro{margin-bottom:5mm}
   section{margin-bottom:5mm}
-  .main{padding:8mm 9mm 7mm 9mm}
+  .main{padding:8mm 9mm 5mm 9mm}
   .ach{display:grid;grid-template-columns:1fr 1fr;column-gap:6mm}
   .ach li{grid-template-columns:16mm minmax(0,1fr);gap:2.5mm;padding:1.8mm 0}
   .ach li:nth-child(2){border-top:0;padding-top:0}
@@ -443,6 +449,7 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
     <section>
       <h2 class="sec"><i>02</i>Professional Experience</h2>
       <div class="timeline">
+      <div class="tl-col">
       <div class="entry">
         <div class="entry-when">Jan 2026 &ndash; Present<span>Jakarta Barat</span></div>
         <div>
@@ -489,6 +496,8 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
         </div>
       </div>
 
+      </div>
+      <div class="tl-col">
       <div class="entry">
         <div class="entry-when">Oct 2020 &ndash; May 2024<span>Jakarta Pusat</span></div>
         <div>
@@ -525,6 +534,7 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
             <li class="np">Maintained Odoo applications &mdash; backups, performance monitoring, troubleshooting &mdash; and supported legacy version migrations.</li>
           </ul>
         </div>
+      </div>
       </div>
       </div>
     </section>
