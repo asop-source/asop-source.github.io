@@ -255,37 +255,13 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   a{text-decoration:none}
   h2.sec,.sh{break-after:avoid;page-break-after:avoid}
   .ach li,.skill,.fact,.glance,.edu-title{break-inside:avoid;page-break-inside:avoid}
-  /* versi PDF satu lembar: bagian pendukung hanya tampil di web */
-  .np{display:none !important}
-  :root{--scale:.84}
-  .side{padding:7mm 6mm 6mm}
-  .side-rest{justify-content:space-between}
-  .portrait{width:24mm;height:24mm}
-  .stack-group{padding:1.8px 0}
-  .name{margin-top:5mm}
-  .side-block{margin-top:3.8mm}
-  .lead{display:grid;grid-template-columns:auto auto;justify-content:space-between;column-gap:1.8mm;font-size:6.8pt;line-height:1.4}
-  .lead li{padding:1.6px 0 1.6px 2.2mm;white-space:nowrap}
-  .lead li:nth-last-child(2){border-bottom:0}
-  .lead li::before{width:1mm;height:1mm;margin-top:-.5mm}
-  .contacts{padding-top:3.5mm;gap:3px}
-  .sh{margin-bottom:2mm}
-  .glance{display:none}
-  .intro{margin-bottom:5mm}
-  section{margin-bottom:5mm}
-  .main{padding:8mm 9mm 7mm 9mm}
-  .ach{display:grid;grid-template-columns:1fr 1fr;column-gap:6mm}
-  .ach li{grid-template-columns:16mm minmax(0,1fr);gap:2.5mm;padding:1.8mm 0}
-  .ach li:nth-child(2){border-top:0;padding-top:0}
-  .ach .fig{font-size:12pt}
-  .ach .fig small{font-size:6.2pt;letter-spacing:.03em}
-  .ach p{font-size:8.4pt;line-height:1.42}
-  .entry{padding-bottom:4.2mm}
-  .entry ul{margin-top:.8mm}
-  .entry li{margin-bottom:1px}
-  h2.sec{margin-bottom:3mm}
-  .ach li{padding:1.4mm 0}
-  .entry li{line-height:1.42}
+  /* PDF = tampilan web desktop: ukuran sama (lebar 210mm), sidebar direntangkan setinggi isi */
+  :root{--scale:1}
+  .side-rest{zoom:1.12;justify-content:flex-start}
+  .side-block{margin-top:8mm}
+  .lead li,.stack-group{padding-top:3.4px;padding-bottom:3.4px}
+  .fact{padding:3.6px 0}
+  .entry-head,.entry-when,.entry-title{break-after:avoid}
 }
 
 </style>
@@ -303,7 +279,8 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
       </div>
     </div>
     <div class="pdf-body">
-      <img src="cv-preview-1.jpg" alt="CV" width="1240" height="1754" loading="lazy">
+      <img src="cv-preview-1.jpg" alt="CV page 1" width="1240" height="1754" loading="lazy">
+      <img src="cv-preview-2.jpg" alt="CV page 2" width="1240" height="1754" loading="lazy">
     </div>
   </div>
 </div>
