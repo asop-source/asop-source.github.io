@@ -12,5 +12,7 @@ const { chromium } = require('playwright');
   await page.waitForLoadState('networkidle');
   await page.pdf({ path: path.join(__dirname, 'Asop-CV.pdf'), preferCSSPageSize: true, printBackground: true });
   await browser.close();
+  // drop previews left over from an earlier, longer PDF
+  for (const f of require('fs').readdirSync(__dirname)) if (/^cv-preview-\d+\.jpg$/.test(f)) require('fs').unlinkSync(path.join(__dirname, f));
   execFileSync('pdftoppm', ['-r', '150', '-jpeg', '-jpegopt', 'quality=85', path.join(__dirname, 'Asop-CV.pdf'), path.join(__dirname, 'cv-preview')]);
 })();
