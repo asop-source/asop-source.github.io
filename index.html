@@ -85,7 +85,7 @@ a{color:inherit}
 .lead{list-style:none;font-size:7.8pt;line-height:1.45;color:var(--side-ink)}
 .lead li{position:relative;padding:2.4px 0 2.4px 3.2mm;border-bottom:1px solid rgba(255,255,255,.08)}
 .lead li:last-child{border-bottom:0}
-.lead li::before{content:"";position:absolute;left:0;top:50%;width:1.4mm;height:1.4mm;margin-top:-.7mm;border-radius:50%;background:var(--teal-lt)}
+.lead li::before{content:"";position:absolute;left:.2mm;top:50%;width:1.3mm;height:1.3mm;margin-top:-.65mm;transform:rotate(45deg);background:var(--teal-lt)}
 .side .tag{font-family:var(--mono);font-size:7.2pt;font-weight:500;color:var(--side-ink);background:var(--side-2);
   border:1px solid #2a3c56;border-radius:3px;padding:1.5px 5px;line-height:1.4}
 .stack-group{display:grid;grid-template-columns:21mm minmax(0,1fr);gap:2mm;padding:2.4px 0;border-bottom:1px solid rgba(255,255,255,.08)}
@@ -139,15 +139,15 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
 .entry::before{content:"";position:absolute;left:-6mm;top:1.2mm;width:2.6mm;height:2.6mm;border-radius:50%;
   background:#fff;border:2px solid var(--teal);box-sizing:border-box}
 .entry:first-child::before{background:var(--teal)}
-.entry-when{font-family:var(--mono);font-size:7.8pt;font-weight:600;color:var(--teal)}
+.entry-when{font-family:var(--mono);font-size:7.3pt;font-weight:600;color:var(--teal)}
 .entry-when span{color:var(--soft);font-weight:500}
 .entry-when span::before{content:" · "}
-.entry-title{font-size:10.4pt;font-weight:700;color:var(--ink);line-height:1.3;margin-top:1px}
-.entry-org{font-size:9pt;font-weight:600;color:var(--navy)}
-.entry-note{font-size:8.3pt;color:var(--soft);margin-top:1px}
+.entry-title{font-size:9.6pt;font-weight:700;color:var(--ink);line-height:1.3;margin-top:1px}
+.entry-org{font-size:8.4pt;font-weight:600;color:var(--navy)}
+.entry-note{font-size:7.8pt;color:var(--soft);margin-top:1px}
 .entry-when,.entry-title,.entry-org,.entry-note{break-after:avoid;page-break-after:avoid}
 .entry ul{list-style:none;margin-top:2mm}
-.entry li{position:relative;padding-left:12px;margin-bottom:2px;font-size:8.9pt;line-height:1.5;break-inside:avoid;page-break-inside:avoid}
+.entry li{position:relative;padding-left:12px;margin-bottom:2px;font-size:8.2pt;line-height:1.5;break-inside:avoid;page-break-inside:avoid}
 .entry li::before{content:"\203A";position:absolute;left:1px;top:-.5px;color:var(--teal);font-weight:700;font-family:var(--mono)}
 .entry li b{color:var(--ink);font-weight:600}
 .entry-cos{display:flex;flex-wrap:wrap;gap:4px;margin-top:2mm}
@@ -257,10 +257,10 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   .stack-group{padding:1.8px 0}
   .name{margin-top:5mm}
   .side-block{margin-top:3.8mm}
-  .lead{display:grid;grid-template-columns:auto auto;justify-content:space-between;column-gap:3mm;font-size:7.1pt;line-height:1.35}
-  .lead li{padding:1.5px 0;white-space:nowrap}
+  .lead{display:grid;grid-template-columns:auto auto;justify-content:space-between;column-gap:1.8mm;font-size:6.8pt;line-height:1.4}
+  .lead li{padding:1.6px 0 1.6px 2.2mm;white-space:nowrap}
   .lead li:nth-last-child(2){border-bottom:0}
-  .lead li::before{display:none}
+  .lead li::before{width:1mm;height:1mm;margin-top:-.5mm}
   .contacts{padding-top:3.5mm;gap:3px}
   .sh{margin-bottom:2mm}
   .glance{display:none}
@@ -273,7 +273,7 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   .ach .fig{font-size:12pt}
   .ach .fig small{font-size:6.2pt;letter-spacing:.03em}
   .ach p{font-size:8.4pt;line-height:1.42}
-  .entry{padding-bottom:2.2mm}
+  .entry{padding-bottom:4.2mm}
   .entry ul{margin-top:.8mm}
   .entry li{margin-bottom:1px}
   h2.sec{margin-bottom:3mm}
@@ -336,15 +336,15 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
         <h3 class="sh">MIS Leadership</h3>
         <ul class="lead">
           <li>IT Strategy &amp; Roadmap</li>
-          <li>IT Policy &amp; Governance</li>
-          <li>MIS Team Leadership</li>
-          <li>Management Reporting</li>
+          <li>IT Governance</li>
           <li>ERP &amp; Business Systems</li>
+          <li>MIS Team Leadership</li>
           <li>IT Service Management</li>
-          <li>IT Spend &amp; Assets</li>
-          <li>Vendor Management</li>
+          <li>Executive Reporting</li>
           <li>Security &amp; Continuity</li>
+          <li>Vendor Management</li>
           <li>Digital Transformation</li>
+          <li>IT Spend &amp; Assets</li>
         </ul>
       </div>
 
