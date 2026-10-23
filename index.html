@@ -123,11 +123,10 @@ h2.sec .sec-at{font-family:var(--mono);font-size:7.6pt;font-weight:500;color:var
 h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
 
 .ach{list-style:none}
-.ach li{display:grid;grid-template-columns:25mm 1fr;gap:4mm;align-items:baseline;padding:2.3mm 0;border-top:1px dashed var(--rule)}
+.ach li{padding:2.3mm 0;border-top:1px dashed var(--rule)}
 .ach li:first-child{border-top:0;padding-top:0}
-.ach .fig{font-family:var(--mono);font-size:13pt;font-weight:700;color:var(--teal);line-height:1.1}
-.ach .fig small{display:block;font-family:'Inter',sans-serif;font-size:7pt;font-weight:600;color:var(--soft);letter-spacing:.06em;text-transform:uppercase;margin-top:2px}
-.ach p{font-size:8.9pt;line-height:1.5}
+.ach p{position:relative;padding-left:12px;font-size:8.9pt;line-height:1.5}
+.ach p::before{content:"\203A";position:absolute;left:1px;top:-.5px;color:var(--teal);font-weight:700;font-family:var(--mono)}
 .ach b{color:var(--ink);font-weight:600}
 .ach a{color:var(--teal);text-decoration:none;font-family:var(--mono);font-size:8.3pt}
 
@@ -175,10 +174,7 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   section{margin-bottom:5mm}
   .main{padding:8mm 9mm 5mm 9mm}
   .ach{display:grid;grid-template-columns:1fr 1fr;column-gap:6mm}
-  .ach li{grid-template-columns:16mm minmax(0,1fr);gap:2.5mm;padding:1.8mm 0}
   .ach li:nth-child(2){border-top:0;padding-top:0}
-  .ach .fig{font-size:12pt}
-  .ach .fig small{font-size:6.2pt;letter-spacing:.03em}
   .ach p{font-size:8.4pt;line-height:1.42}
   .entry{padding-bottom:4.2mm}
   .entry ul{margin-top:.8mm}
@@ -223,7 +219,6 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   .role{font-size:10pt;white-space:normal}
   .contacts{font-size:10pt;margin-top:20px}
   .glance{grid-template-columns:repeat(2,1fr)}
-  .ach li{grid-template-columns:1fr;gap:4px}
   .ach p,.entry li,.tagline{font-size:10.5pt}
   .skill-name,.fact,.edu-meta{font-size:10pt}
   .stack-group{grid-template-columns:34% 1fr}
@@ -434,12 +429,12 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
     <section>
       <h2 class="sec"><i>01</i>Key Results<span class="sec-at">at PT Multi Kencana Niagatama</span></h2>
       <ul class="ach">
-        <li><div class="fig">3&times;<small>revenue target</small></div><p><b>Leading the launch of the company's flagship national loyalty program</b> (<a href="https://gebyar.multi-kabel.com" target="_blank" rel="noopener">gebyar.multi-kabel.com</a>), built by the internal team, aimed at a 3&times; revenue target.</p></li>
-        <li><div class="fig">75%<small>IT asset spend</small></div><p><b>Improved IT asset spending efficiency by 75%</b> compared with previous years&rsquo; spending.</p></li>
-        <li><div class="fig">98<small>users moved</small></div><p><b>Switched ERP with zero downtime</b> for 98 licensed users in 4 group companies, moving off paid enterprise licenses.</p></li>
-        <li><div class="fig">3<small>months to build</small></div><p><b>Replaced a paid IT Service Management System</b> with an in-house platform (<a href="https://ticketing.multi-kabel.com" target="_blank" rel="noopener">ticketing.multi-kabel.com</a>), built in 3 months; now the main channel for IT support.</p></li>
-        <li><div class="fig">30%<small>performance</small></div><p><b>Raised employee performance by 30%</b> with an AI assistant (<a href="https://ai.multi-kabel.com" target="_blank" rel="noopener">ai.multi-kabel.com</a>) that makes daily work more efficient.</p></li>
-        <li><div class="fig">8<small>own servers</small></div><p><b>Brought company systems in-house</b>, moving them from rented cloud services to 8 company-run servers under full company control.</p></li>
+        <li><p><b>Leading the launch of the company&rsquo;s flagship loyalty program</b> (<a href="https://gebyar.multi-kabel.com" target="_blank" rel="noopener">gebyar.multi-kabel.com</a>), built by the company&rsquo;s own team to grow revenue.</p></li>
+        <li><p><b>Made IT purchasing more cost-efficient</b> than in previous years.</p></li>
+        <li><p><b>Moved the group to a new business management system</b> without disrupting daily operations, and stopped paying for expensive software licenses.</p></li>
+        <li><p><b>Replaced a paid IT helpdesk system</b> with one built in-house (<a href="https://ticketing.multi-kabel.com" target="_blank" rel="noopener">ticketing.multi-kabel.com</a>), now the main way employees get IT help.</p></li>
+        <li><p><b>Introduced an AI assistant</b> (<a href="https://ai.multi-kabel.com" target="_blank" rel="noopener">ai.multi-kabel.com</a>) that helps employees get their daily work done more efficiently.</p></li>
+        <li><p><b>Moved company systems onto the company&rsquo;s own servers</b>, instead of renting them from outside providers, so the company fully controls them.</p></li>
       </ul>
     </section>
 
