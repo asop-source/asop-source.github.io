@@ -260,6 +260,28 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   a{text-decoration:none}
   h2.sec,.sh{break-after:avoid;page-break-after:avoid}
   .ach li,.skill,.fact,.proj,.glance,.edu-title{break-inside:avoid;page-break-inside:avoid}
+  /* versi PDF satu lembar: bagian pendukung hanya tampil di web */
+  .np{display:none !important}
+  :root{--scale:.84}
+  .side{padding:9mm 6mm 8mm}
+  .portrait{width:27mm;height:27mm}
+  .name{margin-top:5mm}
+  .side-block{margin-top:4.5mm}
+  .contacts{padding-top:3.5mm;gap:3px}
+  .sh{margin-bottom:2mm}
+  .glance{display:none}
+  .intro{margin-bottom:5mm}
+  section{margin-bottom:5mm}
+  .main{padding:8mm 9mm 7mm 9mm}
+  .ach{display:grid;grid-template-columns:1fr 1fr;column-gap:6mm}
+  .ach li{grid-template-columns:16mm minmax(0,1fr);gap:2.5mm;padding:1.8mm 0}
+  .ach li:nth-child(2){border-top:0;padding-top:0}
+  .ach .fig{font-size:12pt}
+  .ach .fig small{font-size:6.2pt;letter-spacing:.03em}
+  .ach p{font-size:8.4pt;line-height:1.42}
+  .entry{padding-bottom:3mm}
+  .entry ul{margin-top:1.2mm}
+  .entry li{line-height:1.42}
 }
 
 </style>
@@ -277,8 +299,7 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
       </div>
     </div>
     <div class="pdf-body">
-      <img src="cv-preview-1.jpg" alt="CV halaman 1" width="1240" height="1754" loading="lazy">
-      <img src="cv-preview-2.jpg" alt="CV halaman 2" width="1240" height="1754" loading="lazy">
+      <img src="cv-preview-1.jpg" alt="CV" width="1240" height="1754" loading="lazy">
     </div>
   </div>
 </div>
@@ -314,7 +335,7 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
     </div>
 
     <div class="side-rest">
-      <div class="side-block">
+      <div class="side-block np">
         <h3 class="sh">Core Expertise</h3>
           <div class="skill"><div class="skill-name">Odoo ERP Implementation &amp; Customization (V8&ndash;18)</div><svg class="meter" viewBox="0 0 100 4" preserveAspectRatio="none" aria-hidden="true"><rect width="100" height="4" rx="2" fill="#24344b"/><rect width="100" height="4" rx="2" fill="url(#gbar)"/></svg></div>
           <div class="skill"><div class="skill-name">Python (Backend, Automation)</div><svg class="meter" viewBox="0 0 100 4" preserveAspectRatio="none" aria-hidden="true"><rect width="100" height="4" rx="2" fill="#24344b"/><rect width="85" height="4" rx="2" fill="url(#gbar)"/></svg></div>
@@ -377,7 +398,7 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
         </dl>
       </div>
 
-      <div class="side-block">
+      <div class="side-block np">
         <h3 class="sh">Industry Coverage</h3>
         <div class="projects">
         <div class="proj"><b>AI Assistant</b><span>LLM-powered assistants built with LangChain, RAG / vector search, MCP tool integration, and OpenRouter.</span></div>
@@ -439,10 +460,10 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
           <ul>
             <li><b>Decide the group's technology direction</b> &mdash; choose what is adopted across all six companies and drive it from selection to full rollout.</li>
             <li><b>Shape IT strategy with the CEO and Board</b> &mdash; turn business goals into an IT roadmap, investment priorities, and measurable results.</li>
-            <li><b>Set group IT policy</b> &mdash; technology standards, budget allocation, and implementation priorities for every company.</li>
+            <li class="np"><b>Set group IT policy</b> &mdash; technology standards, budget allocation, and implementation priorities for every company.</li>
             <li><b>Lead digital transformation</b> &mdash; ERP, in-house platforms, automation, and AI, standardized across the group.</li>
             <li><b>Run the Management Information Systems function</b> &mdash; build and lead the team, manage vendors, and safeguard security and continuity for 1,200 employees.</li>
-            <li><b>Deliver executive insight</b> &mdash; reporting and data that management relies on for daily and strategic decisions.</li>
+            <li class="np"><b>Deliver executive insight</b> &mdash; reporting and data that management relies on for daily and strategic decisions.</li>
           </ul>
         </div>
       </div>
@@ -452,11 +473,11 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
         <div>
           <div class="entry-title">IT Operations (Odoo Legacy)</div>
           <div class="entry-org">PT. Paragon And Innovation</div>
-          <div class="entry-note">ParagonCorp &mdash; a leading powerhouse in Indonesia's cosmetics and personal care industry.</div>
+          <div class="entry-note np">ParagonCorp &mdash; a leading powerhouse in Indonesia's cosmetics and personal care industry.</div>
           <ul>
             <li>Managed daily operations and maintenance of legacy Odoo systems supporting business continuity at national scale.</li>
-            <li>Owned monitoring, backup, and incident-response routines to prevent data loss and minimize downtime.</li>
-            <li>Acted as escalation point for end-user issues and coordinated patches and infrastructure upgrades with development teams.</li>
+            <li class="np">Owned monitoring, backup, and incident-response routines to prevent data loss and minimize downtime.</li>
+            <li class="np">Acted as escalation point for end-user issues and coordinated patches and infrastructure upgrades with development teams.</li>
           </ul>
         </div>
       </div>
@@ -466,11 +487,11 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
         <div>
           <div class="entry-title">Senior Odoo Developer</div>
           <div class="entry-org">PT. Akselerasi Teknologi Investama</div>
-          <div class="entry-note">IT consulting firm delivering technology solutions for business growth and digital transformation.</div>
+          <div class="entry-note np">IT consulting firm delivering technology solutions for business growth and digital transformation.</div>
           <ul>
             <li>Led ERP delivery on client projects &mdash; stakeholder requirement gathering, technical specification, development, and go-live.</li>
-            <li>Led migrations of legacy systems to the latest Odoo version, ensuring data integrity and minimal downtime.</li>
-            <li>Mentored developers through code reviews and performance optimization, raising delivery quality across the team.</li>
+            <li class="np">Led migrations of legacy systems to the latest Odoo version, ensuring data integrity and minimal downtime.</li>
+            <li class="np">Mentored developers through code reviews and performance optimization, raising delivery quality across the team.</li>
           </ul>
         </div>
       </div>
@@ -482,7 +503,7 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
           <div class="entry-org">PT. Trimitrasis Consulting</div>
           <ul>
             <li>Designed and developed new modules and product features to meet client requirements and improve user experience.</li>
-            <li>Worked with marketing, design, and engineering teams to define specifications, timelines, and release scope.</li>
+            <li class="np">Worked with marketing, design, and engineering teams to define specifications, timelines, and release scope.</li>
           </ul>
         </div>
       </div>
@@ -494,14 +515,14 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
           <div class="entry-org">Vitraining</div>
           <ul>
             <li>Developed and customized Odoo modules with Python and XML to improve client business workflows.</li>
-            <li>Maintained Odoo applications &mdash; backups, performance monitoring, troubleshooting &mdash; and supported legacy version migrations.</li>
+            <li class="np">Maintained Odoo applications &mdash; backups, performance monitoring, troubleshooting &mdash; and supported legacy version migrations.</li>
           </ul>
         </div>
       </div>
       </div>
     </section>
 
-    <section>
+    <section class="np">
       <h2 class="sec"><i>03</i>Platforms &amp; Systems Owned</h2>
       <ul class="plist plist-main">
           <li><a href="https://ticketing.multi-kabel.com" target="_blank" rel="noopener">ticketing.multi-kabel.com</a><span>ITSM platform, built in-house</span></li>
