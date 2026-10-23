@@ -30,7 +30,7 @@
   --paper:#fff;
   --canvas:#e5e9ef;
   --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
-  --scale:.91;
+  --scale:.84;
   --page-w:210mm;
   --side-w:72mm;
 }
@@ -156,9 +156,37 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   border:1px solid #d5dee8;border-radius:3px;padding:1px 5px}
 
 
-/* ============ layar sempit ============ */
-/* PDF: pengalaman dua kolom, 3 jabatan terbaru kiri dan 3 sebelumnya kanan, lengkap dengan deskripsi */
-@media print{
+/* ============ tata letak PDF satu lembar; web desktop memakai tata letak yang sama ============ */
+@media print, screen and (min-width:821px){
+  .side{padding:7mm 6mm 6mm}
+  .side-rest{justify-content:space-between}
+  .portrait{width:24mm;height:24mm}
+  .stack-group{padding:1.8px 0}
+  .name{margin-top:5mm}
+  .side-block{margin-top:3.8mm}
+  .lead{display:grid;grid-template-columns:auto auto;justify-content:space-between;column-gap:1.8mm;font-size:6.8pt;line-height:1.4}
+  .lead li{padding:1.6px 0 1.6px 2.2mm;white-space:nowrap}
+  .lead li:nth-last-child(2){border-bottom:0}
+  .lead li::before{width:1mm;height:1mm;margin-top:-.5mm}
+  .contacts{padding-top:3.5mm;gap:3px}
+  .sh{margin-bottom:2mm}
+  .glance{margin-bottom:4mm}
+  .intro{margin-bottom:5mm}
+  section{margin-bottom:5mm}
+  .main{padding:8mm 9mm 5mm 9mm}
+  .ach{display:grid;grid-template-columns:1fr 1fr;column-gap:6mm}
+  .ach li{grid-template-columns:16mm minmax(0,1fr);gap:2.5mm;padding:1.8mm 0}
+  .ach li:nth-child(2){border-top:0;padding-top:0}
+  .ach .fig{font-size:12pt}
+  .ach .fig small{font-size:6.2pt;letter-spacing:.03em}
+  .ach p{font-size:8.4pt;line-height:1.42}
+  .entry{padding-bottom:4.2mm}
+  .entry ul{margin-top:.8mm}
+  .entry li{margin-bottom:1px}
+  h2.sec{margin-bottom:3mm}
+  .ach li{padding:1.4mm 0}
+  .entry li{line-height:1.42}
+  /* pengalaman dua kolom, 3 jabatan terbaru kiri dan 3 sebelumnya kanan, lengkap dengan deskripsi */
   .timeline{display:grid;grid-template-columns:1fr 1fr;column-gap:6mm;padding-left:0;align-items:start}
   .timeline::before{display:none}
   .tl-col + .tl-col{padding-top:0}
@@ -171,13 +199,15 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   .timeline .entry li{font-size:7.7pt;line-height:1.36}
   .timeline .entry-note{font-size:7.4pt}
 }
-/* web desktop: sidebar sedikit lebih besar supaya mengisi setinggi kolom utama */
+/* web desktop: lembar selebar versi PDF sebelum diperkecil, jadi isinya sama persis dengan PDF */
 @media screen and (min-width:821px){
-  .side-rest{zoom:1.12}
-  .side-block{margin-top:8mm}
-  .lead li,.stack-group{padding-top:3.4px;padding-bottom:3.4px}
-  .fact{padding:3.6px 0}
+  :root{--page-w:calc(210mm / var(--scale))}
 }
+@media screen and (min-width:821px) and (max-width:1000px){
+  .sheet{zoom:var(--scale)}
+  .toolbar-in{max-width:210mm}
+}
+/* ============ layar sempit ============ */
 @media screen and (max-width:820px){
   :root{--page-w:100%}
   body{font-size:10.5pt}
@@ -264,43 +294,12 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   .sheet{background:transparent}
   .side{background:url(batik-naga.svg) 0 0/220px repeat transparent}
   .main{background:url(batik-naga-light.svg) 0 0/220px repeat transparent}
-  .side-rest{justify-content:flex-start}
   .stack-group{break-inside:avoid}
   .side,.main{-webkit-box-decoration-break:clone;box-decoration-break:clone}
   a{text-decoration:none}
   h2.sec,.sh{break-after:avoid;page-break-after:avoid}
   .ach li,.skill,.fact,.glance,.edu-title{break-inside:avoid;page-break-inside:avoid}
-  /* versi PDF satu lembar: bagian pendukung hanya tampil di web */
   .np{display:none !important}
-  :root{--scale:.84}
-  .side{padding:7mm 6mm 6mm}
-  .side-rest{justify-content:space-between}
-  .portrait{width:24mm;height:24mm}
-  .stack-group{padding:1.8px 0}
-  .name{margin-top:5mm}
-  .side-block{margin-top:3.8mm}
-  .lead{display:grid;grid-template-columns:auto auto;justify-content:space-between;column-gap:1.8mm;font-size:6.8pt;line-height:1.4}
-  .lead li{padding:1.6px 0 1.6px 2.2mm;white-space:nowrap}
-  .lead li:nth-last-child(2){border-bottom:0}
-  .lead li::before{width:1mm;height:1mm;margin-top:-.5mm}
-  .contacts{padding-top:3.5mm;gap:3px}
-  .sh{margin-bottom:2mm}
-  .glance{margin-bottom:4mm}
-  .intro{margin-bottom:5mm}
-  section{margin-bottom:5mm}
-  .main{padding:8mm 9mm 5mm 9mm}
-  .ach{display:grid;grid-template-columns:1fr 1fr;column-gap:6mm}
-  .ach li{grid-template-columns:16mm minmax(0,1fr);gap:2.5mm;padding:1.8mm 0}
-  .ach li:nth-child(2){border-top:0;padding-top:0}
-  .ach .fig{font-size:12pt}
-  .ach .fig small{font-size:6.2pt;letter-spacing:.03em}
-  .ach p{font-size:8.4pt;line-height:1.42}
-  .entry{padding-bottom:4.2mm}
-  .entry ul{margin-top:.8mm}
-  .entry li{margin-bottom:1px}
-  h2.sec{margin-bottom:3mm}
-  .ach li{padding:1.4mm 0}
-  .entry li{line-height:1.42}
 }
 
 </style>
