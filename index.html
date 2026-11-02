@@ -141,8 +141,7 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
 .entry:last-child{padding-bottom:0}
 .entry::before{content:"";position:absolute;left:-6mm;top:1.2mm;width:2.6mm;height:2.6mm;border-radius:50%;
   background:#fff;border:2px solid var(--teal);box-sizing:border-box}
-.tl-col:first-child .entry:first-child::before{background:var(--teal)}
-.tl-col + .tl-col{padding-top:4.5mm}
+.timeline > .entry:first-child::before{background:var(--teal)}
 .entry-when{font-family:var(--mono);font-size:7.3pt;font-weight:600;color:var(--teal)}
 .entry-when span{color:var(--soft);font-weight:500}
 .entry-when span::before{content:" · "}
@@ -173,9 +172,9 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   .lead li::before{width:1mm;height:1mm;margin-top:-.5mm}
   .contacts{padding-top:3.5mm;gap:3px}
   .sh{margin-bottom:2mm}
-  .glance{margin-bottom:4mm}
-  .intro{margin-bottom:5mm}
-  section{margin-bottom:5mm}
+  .glance{margin-bottom:3.4mm}
+  .intro{margin-bottom:4.2mm}
+  section{margin-bottom:4mm}
   .main{padding:8mm 9mm 5mm 9mm}
   .ach{display:grid;grid-template-columns:1fr 1fr;column-gap:6mm}
   .ach li:nth-child(2){border-top:0;padding-top:0}
@@ -183,16 +182,30 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   .entry{padding-bottom:4.2mm}
   .entry ul{margin-top:.8mm}
   .entry li{margin-bottom:1px}
-  h2.sec{margin-bottom:3mm}
-  .ach li{padding:2mm 0}
+  h2.sec{margin-bottom:2.4mm}
+  .ach li{padding:1.6mm 0}
   .entry li{line-height:1.42}
-  /* pengalaman dua kolom, 3 jabatan terbaru kiri dan 3 sebelumnya kanan, lengkap dengan deskripsi */
-  .timeline{display:grid;grid-template-columns:1fr 1fr;column-gap:6mm;padding-left:0;align-items:start}
+  /* pengalaman: jabatan terbaru lebar penuh di atas, lalu bercabang zigzag kiri-kanan di sepanjang batang tengah */
+  .timeline{padding-left:0}
   .timeline::before{display:none}
-  .tl-col + .tl-col{padding-top:0}
-  .timeline .entry{padding:0 0 2.6mm 4mm;border-left:1.5px solid var(--rule)}
-  .timeline .entry::before{left:-1.35mm}
-  .timeline .entry-cos{display:block;margin-top:1mm;font-size:6.9pt;line-height:1.45;color:var(--soft)}
+  .timeline > .entry{padding:0 0 0 4mm;border-left:1.5px solid var(--rule)}
+  .timeline > .entry::before{left:-1.35mm}
+  .tl-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:8mm;position:relative;padding-top:2.6mm}
+  .tl-grid::after{content:"";position:absolute;left:0;top:0;width:calc(50% + .75px);height:1.5mm;box-sizing:border-box;
+    border-left:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);border-radius:0 0 0 1.5mm}
+  .tl-grid::before{content:"";position:absolute;left:50%;top:1.5mm;bottom:0;width:1.5px;margin-left:-.75px;background:var(--rule)}
+  .tl-grid .entry{padding:0 0 1mm;grid-column:1}
+  .tl-grid .entry:nth-child(even){grid-column:2}
+  .tl-grid .entry:nth-child(1){grid-row:1/span 2}
+  .tl-grid .entry:nth-child(2){grid-row:2/span 2}
+  .tl-grid .entry:nth-child(3){grid-row:3/span 2}
+  .tl-grid .entry:nth-child(4){grid-row:4/span 2}
+  .tl-grid .entry:nth-child(5){grid-row:5/span 2}
+  .tl-grid .entry::before{left:auto;right:-5.3mm}
+  .tl-grid .entry:nth-child(even)::before{right:auto;left:-5.3mm}
+  .tl-grid .entry::after{content:"";position:absolute;top:2.45mm;right:-2.7mm;width:2.7mm;height:1.5px;background:var(--rule)}
+  .tl-grid .entry:nth-child(even)::after{right:auto;left:-2.7mm}
+  .timeline .entry-cos{display:block;margin-top:1mm;font-size:6.6pt;line-height:1.45;color:var(--soft)}
   .timeline .entry-cos .tag{display:inline;padding:0;border:0;background:none;font:inherit;color:inherit}
   .timeline .entry-cos .tag:not(:last-child)::after{content:" · "}
   .timeline .entry li{font-size:8pt;line-height:1.4}
@@ -445,7 +458,6 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
     <section>
       <h2 class="sec"><i>02</i>Professional Experience</h2>
       <div class="timeline">
-      <div class="tl-col">
       <div class="entry">
         <div class="entry-when">Jan 2026 &ndash; Present<span>Jakarta Barat</span></div>
         <div>
@@ -467,11 +479,12 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
         </div>
       </div>
 
+      <div class="tl-grid">
       <div class="entry">
         <div class="entry-when">Dec 2024 &ndash; Nov 2025<span>Jakarta Selatan</span></div>
         <div>
           <div class="entry-title">IT Operation &ndash; Odoo ERP Legacy</div>
-          <div class="entry-org">PT Paragon Technology and Innovation (ParagonCorp)</div>
+          <div class="entry-org">PT Paragon Technology and Innovation</div>
           <div class="entry-note">ParagonCorp &mdash; a leading powerhouse in Indonesia's cosmetics and personal care industry.</div>
           <ul>
             <li>Managed daily operations and maintenance of legacy Odoo ERP systems supporting business continuity at national scale.</li>
@@ -481,8 +494,6 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
         </div>
       </div>
 
-      </div>
-      <div class="tl-col">
       <div class="entry">
         <div class="entry-when">Jun 2024 &ndash; Nov 2024</div>
         <div>
