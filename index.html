@@ -185,31 +185,34 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   h2.sec{margin-bottom:2.4mm}
   .ach li{padding:1.6mm 0}
   .entry li{line-height:1.42}
-  /* pengalaman: jabatan terbaru lebar penuh di atas, lalu bercabang zigzag kiri-kanan di sepanjang batang tengah */
+  /* pengalaman gaya eksekutif. Jabatan terakhir lebar penuh dengan tanggal di kanan, jabatan lain dalam grid 2 kolom yang sejajar dengan garis pemisah tipis */
   .timeline{padding-left:0}
   .timeline::before{display:none}
-  .timeline > .entry{padding:0 0 0 4mm;border-left:1.5px solid var(--rule)}
-  .timeline > .entry::before{left:-1.35mm}
-  .tl-grid{display:grid;grid-template-columns:1fr 1fr;column-gap:8mm;position:relative;padding-top:2.6mm}
-  .tl-grid::after{content:"";position:absolute;left:0;top:0;width:calc(50% + .75px);height:1.5mm;box-sizing:border-box;
-    border-left:1.5px solid var(--rule);border-bottom:1.5px solid var(--rule);border-radius:0 0 0 1.5mm}
-  .tl-grid::before{content:"";position:absolute;left:50%;top:1.5mm;bottom:0;width:1.5px;margin-left:-.75px;background:var(--rule)}
-  .tl-grid .entry{padding:0 0 1mm;grid-column:1}
-  .tl-grid .entry:nth-child(even){grid-column:2}
-  .tl-grid .entry:nth-child(1){grid-row:1/span 2}
-  .tl-grid .entry:nth-child(2){grid-row:2/span 2}
-  .tl-grid .entry:nth-child(3){grid-row:3/span 2}
-  .tl-grid .entry:nth-child(4){grid-row:4/span 2}
-  .tl-grid .entry:nth-child(5){grid-row:5/span 2}
-  .tl-grid .entry::before{left:auto;right:-5.3mm}
-  .tl-grid .entry:nth-child(even)::before{right:auto;left:-5.3mm}
-  .tl-grid .entry::after{content:"";position:absolute;top:2.45mm;right:-2.7mm;width:2.7mm;height:1.5px;background:var(--rule)}
-  .tl-grid .entry:nth-child(even)::after{right:auto;left:-2.7mm}
-  .timeline .entry-cos{display:block;margin-top:1mm;font-size:6.6pt;line-height:1.45;color:var(--soft)}
+  .entry::before{display:none}
+  .timeline > .entry{display:grid;grid-template-columns:1fr auto;column-gap:5mm;padding:0 0 2.6mm;margin:0}
+  .timeline > .entry > div:not(.entry-when){display:contents}
+  .timeline > .entry .entry-when{grid-column:2;grid-row:1/span 2;text-align:right;line-height:1.5;padding-top:1px}
+  .timeline > .entry .entry-when span{display:block}
+  .timeline > .entry .entry-when span::before{content:none}
+  .timeline > .entry .entry-title{grid-column:1;grid-row:1;font-size:11.2pt;letter-spacing:-.15px;margin-top:0}
+  .timeline > .entry .entry-org{grid-column:1;grid-row:2;font-size:8.8pt}
+  .timeline > .entry .entry-note,.timeline > .entry .entry-cos,.timeline > .entry ul{grid-column:1/-1}
+  .timeline > .entry .entry-note{margin-top:1.2mm}
+  .tl-grid{display:grid;grid-template-columns:repeat(12,1fr);border-top:1.5px solid var(--navy)}
+  .tl-grid .entry:nth-child(odd){grid-column:1/8}
+  .tl-grid .entry:nth-child(even){grid-column:8/13}
+  .tl-grid .entry{padding:2.2mm 4.5mm 2.2mm 0;border-bottom:1px solid var(--rule)}
+  .tl-grid .entry:nth-child(even){padding:2.2mm 0 2.2mm 4.5mm;border-left:1px solid var(--rule)}
+  .tl-grid .entry:last-child{border-bottom:0;padding-bottom:0}
+  .tl-grid .entry:nth-child(5){grid-column:1/-1;padding-right:0}
+  .tl-grid .entry-when{margin-bottom:.4mm}
+  .tl-grid .entry-title{font-size:9.2pt}
+  .tl-grid .entry-org{font-size:8.3pt}
+  .timeline .entry-cos{display:block;margin-top:1mm;font-size:6.9pt;line-height:1.45;color:var(--soft)}
   .timeline .entry-cos .tag{display:inline;padding:0;border:0;background:none;font:inherit;color:inherit}
   .timeline .entry-cos .tag:not(:last-child)::after{content:" · "}
-  .timeline .entry li{font-size:8pt;line-height:1.4}
-  .timeline .entry-note{font-size:7.9pt}
+  .timeline .entry li{font-size:8.3pt;line-height:1.42}
+  .timeline .entry-note{font-size:8.1pt}
 }
 /* web desktop: lembar selebar versi PDF sebelum diperkecil, jadi isinya sama persis dengan PDF */
 @media screen and (min-width:821px){
