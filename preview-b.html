@@ -1,0 +1,605 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Asop CV — Preview B</title>
+<meta name="robots" content="noindex,nofollow">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Crect width='24' height='24' rx='5' fill='%230f3557'/%3E%3Cpath fill='%23fff' d='M6 4h8l4 4v12H6V4z' opacity='.95'/%3E%3Cpath fill='%230e8ba1' d='M14 4l4 4h-4V4z'/%3E%3Crect x='8' y='11' width='8' height='1.4' fill='%230f3557'/%3E%3Crect x='8' y='14' width='8' height='1.4' fill='%230f3557'/%3E%3Crect x='8' y='17' width='5' height='1.4' fill='%230f3557'/%3E%3C/svg%3E">
+<meta name="description" content="Curriculum Vitae of Asop — Management Information Systems Manager with 8+ years in ERP, digital transformation, and in-house platforms, heading technology for a six-company group of around 1,200 employees.">
+<meta name="author" content="Asop">
+<meta property="og:title" content="Asop — Management Information Systems Manager">
+<meta property="og:description" content="Management Information Systems Manager — 8+ years in ERP, digital transformation, and in-house platforms; heads technology for a six-company group.">
+<meta property="og:type" content="profile">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --side:#0f1b2d;
+  --side-2:#16263d;
+  --side-ink:#e2e8f0;
+  --side-soft:#94a3b8;
+  --teal:#0d9488;
+  --teal-lt:#5eead4;
+  --navy:#0f3557;
+  --ink:#0f172a;
+  --body:#3f4b5c;
+  --soft:#6b7789;
+  --rule:#e2e8f0;
+  --wash:#f1f5f9;
+  --paper:#fff;
+  --canvas:#e5e9ef;
+  --mono:'JetBrains Mono',ui-monospace,SFMono-Regular,Menlo,Consolas,monospace;
+  --scale:.84;
+  --page-w:210mm;
+  --side-w:72mm;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{-webkit-text-size-adjust:100%}
+body{font-family:'Inter',-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:var(--canvas);color:var(--body);font-size:9pt;line-height:1.5;-webkit-font-smoothing:antialiased}
+a{color:inherit}
+*{-webkit-print-color-adjust:exact;print-color-adjust:exact}
+
+/* ============ toolbar ============ */
+.toolbar{position:sticky;top:0;z-index:20;background:rgba(229,233,239,.92);
+  backdrop-filter:blur(8px);border-bottom:1px solid #d3dae3}
+.toolbar-in{max-width:var(--page-w);margin:0 auto;padding:9px 0;display:flex;gap:8px;justify-content:flex-end}
+.btn{font:inherit;font-size:11.5px;font-weight:500;display:inline-flex;align-items:center;gap:6px;
+  padding:7px 14px;border-radius:6px;cursor:pointer;text-decoration:none;border:1px solid transparent}
+.btn svg{width:13px;height:13px;fill:currentColor}
+.btn-primary{background:var(--side);color:#fff}
+.btn-primary:hover{background:#0a1322}
+.btn-ghost{background:#fff;color:var(--side);border-color:#c9d2dd}
+.btn-ghost:hover{background:#f4f7fa}
+
+/* ============ sheet: sidebar gelap + kolom utama ============ */
+.sheet{position:relative;width:var(--page-w);margin:22px auto 40px;background:var(--paper);
+  display:grid;grid-template-columns:var(--side-w) 1fr;
+  box-shadow:0 1px 2px rgba(15,23,42,.05),0 16px 44px rgba(15,23,42,.14)}
+/* latar sidebar sebagai elemen terpisah: di print dibuat fixed supaya ada di setiap halaman */
+/* sidebar setinggi kolom utama; isinya direntangkan supaya tidak ada area kosong */
+.side{position:relative;background:var(--side) url(batik-naga.svg) 0 0/220px repeat;color:var(--side-ink);padding:12mm 6mm 12mm;display:flex;flex-direction:column}
+.side-rest{flex:1;display:flex;flex-direction:column;justify-content:space-between}
+.main{padding:12mm 11mm 12mm 10mm;min-width:0;background:url(batik-naga-light.svg) 0 0/220px repeat}
+
+/* ---- sidebar ---- */
+.portrait{width:36mm;height:36mm;margin:0 auto;border-radius:50%;overflow:hidden;
+  box-shadow:0 0 0 1.2mm var(--side),0 0 0 1.7mm var(--teal-lt)}
+.portrait img{width:100%;height:100%;object-fit:cover;display:block}
+.name{margin-top:7mm;font-size:30pt;line-height:1;font-weight:800;color:#fff;letter-spacing:-.8px}
+.role{margin-top:6px;font-size:7.8pt;font-weight:600;line-height:1.4;color:var(--teal-lt);white-space:nowrap;letter-spacing:0}
+.headline{margin-top:3px;font-size:7pt;line-height:1.45;color:rgba(255,255,255,.72)}
+.headline span{white-space:nowrap}
+.side-block{margin-top:6mm}
+.sh{font-family:var(--mono);font-size:8pt;font-weight:700;letter-spacing:.08em;text-transform:uppercase;
+  color:var(--teal-lt);margin-bottom:3mm;display:flex;align-items:center;gap:6px}
+.sh::before{content:"//";color:var(--side-soft);font-weight:500}
+.contacts{display:flex;flex-direction:column;gap:5px;font-size:7.6pt;letter-spacing:-.1px;padding-top:5mm;border-top:1px solid rgba(255,255,255,.12)}
+.contacts span{display:flex;align-items:center;gap:7px;color:var(--side-ink);word-break:break-all}
+.contacts a{text-decoration:none}
+.contacts a:hover{color:var(--teal-lt)}
+.contacts svg{width:11px;height:11px;fill:var(--teal-lt);flex:0 0 11px}
+.skill{margin-bottom:4.5px}
+.skill-name{font-size:8.1pt;color:var(--side-ink);line-height:1.3;font-weight:500}
+.meter{display:block;width:100%;height:4px;margin-top:3px}
+.tags{display:flex;flex-wrap:wrap;gap:4px}
+.lead{list-style:none;font-size:7.8pt;line-height:1.45;color:var(--side-ink)}
+.lead li{position:relative;padding:2.4px 0 2.4px 3.2mm;border-bottom:1px solid rgba(255,255,255,.08)}
+.lead li:last-child{border-bottom:0}
+.lead li::before{content:"";position:absolute;left:.2mm;top:50%;width:1.3mm;height:1.3mm;margin-top:-.65mm;transform:rotate(45deg);background:var(--teal-lt)}
+.side .tag{font-family:var(--mono);font-size:7.2pt;font-weight:500;color:var(--side-ink);background:var(--side-2);
+  border:1px solid #2a3c56;border-radius:3px;padding:1.5px 5px;line-height:1.4}
+.stack-group{display:grid;grid-template-columns:21mm minmax(0,1fr);gap:2mm;padding:2.4px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.stack-group:last-child{border-bottom:0}
+.stack-label{font-size:6.6pt;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--side-soft);line-height:1.45;padding-top:.6px}
+.stack .tags{display:block;font-size:7.8pt;line-height:1.45;color:var(--side-ink)}
+.side .stack .tag{display:inline-block;font:inherit;font-weight:500;color:inherit;background:none;border:0;padding:0;white-space:nowrap;max-width:100%}
+.side .stack .tag.long{white-space:normal}
+.side .stack .tag:not(:last-child){margin-right:.45em}
+.side .stack .tag:not(:last-child)::after{content:",";color:var(--side-soft)}
+.edu-title{font-size:8.8pt;font-weight:700;color:#fff;line-height:1.3}
+.edu-meta{font-size:8pt;color:var(--side-soft);margin-top:1px}
+.fact{display:flex;justify-content:space-between;gap:6px;font-size:8pt;padding:2.5px 0;border-bottom:1px solid rgba(255,255,255,.08)}
+.fact:last-child{border-bottom:0}
+.fact dt{color:var(--side-soft)}
+.fact dd{color:var(--side-ink);font-weight:600;text-align:right}
+
+/* ---- main ---- */
+section{margin-bottom:7mm}
+section:last-child{margin-bottom:0}
+.kicker{font-family:var(--mono);font-size:8pt;font-weight:600;color:var(--teal);margin-bottom:2mm}
+.tagline{font-size:9.6pt;line-height:1.6;color:var(--body)}
+.tagline b{color:var(--ink);font-weight:600}
+.portfolio-link{margin-top:2mm;font-size:8.6pt;color:var(--soft)}
+.portfolio-link a{font-family:var(--mono);font-weight:600;color:var(--teal);text-decoration:none}
+.portfolio-link a:hover{text-decoration:underline}
+.glance{margin-top:5mm;display:grid;grid-template-columns:repeat(4,1fr);gap:3mm}
+.glance div{border:1px solid var(--rule);border-top:2px solid var(--teal);border-radius:3px;padding:2.6mm 3mm;background:var(--wash)}
+.glance b{display:block;font-family:var(--mono);font-size:13pt;font-weight:700;color:var(--ink);line-height:1.15;white-space:nowrap}
+.glance span{display:block;margin-top:2px;font-size:7.6pt;color:var(--soft)}
+h2.sec{display:flex;align-items:center;gap:8px;font-size:11pt;font-weight:800;color:var(--ink);
+  letter-spacing:-.1px;margin-bottom:4mm}
+h2.sec i{font-style:normal;font-family:var(--mono);font-size:8.4pt;font-weight:700;color:#fff;background:var(--teal);
+  border-radius:3px;padding:1px 5px}
+h2.sec .sec-at{font-family:var(--mono);font-size:7.6pt;font-weight:500;color:var(--soft)}
+h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
+
+.ach{list-style:none}
+.ach li{padding:2.3mm 0;border-top:1px dashed var(--rule)}
+.ach li:first-child{border-top:0;padding-top:0}
+.ach p{position:relative;padding-left:12px;font-size:8.9pt;line-height:1.5}
+.ach a{white-space:nowrap}
+.ach p::before{content:"\203A";position:absolute;left:1px;top:-.5px;color:var(--teal);font-weight:700;font-family:var(--mono)}
+.ach b{color:var(--ink);font-weight:600}
+.ach a{color:var(--teal);text-decoration:none;font-family:var(--mono);font-size:8.3pt}
+
+/* timeline */
+.timeline{position:relative;padding-left:6mm}
+.timeline::before{content:"";position:absolute;left:1.2mm;top:1.5mm;bottom:2mm;width:1.5px;background:var(--rule)}
+.entry{position:relative;padding-bottom:4.5mm}
+.entry:last-child{padding-bottom:0}
+.entry::before{content:"";position:absolute;left:-6mm;top:1.2mm;width:2.6mm;height:2.6mm;border-radius:50%;
+  background:#fff;border:2px solid var(--teal);box-sizing:border-box}
+.timeline > .entry:first-child::before{background:var(--teal)}
+.entry-when{font-family:var(--mono);font-size:7.3pt;font-weight:600;color:var(--teal)}
+.entry-when span{color:var(--soft);font-weight:500}
+.entry-when span::before{content:" · "}
+.entry-title{font-size:9.6pt;font-weight:700;color:var(--ink);line-height:1.3;margin-top:1px}
+.entry-org{font-size:8.4pt;font-weight:600;color:var(--navy)}
+.entry-note{font-size:7.8pt;color:var(--soft);margin-top:1px}
+.entry-when,.entry-title,.entry-org,.entry-note{break-after:avoid;page-break-after:avoid}
+.entry ul{list-style:none;margin-top:2mm}
+.entry li{position:relative;padding-left:12px;margin-bottom:2px;font-size:8.2pt;line-height:1.5;break-inside:avoid;page-break-inside:avoid}
+.entry li::before{content:"\203A";position:absolute;left:1px;top:-.5px;color:var(--teal);font-weight:700;font-family:var(--mono)}
+.entry li b{color:var(--ink);font-weight:600}
+.entry-cos{display:flex;flex-wrap:wrap;gap:4px;margin-top:2mm}
+.main .tag{font-family:var(--mono);font-size:7.2pt;font-weight:500;color:var(--navy);background:var(--wash);
+  border:1px solid #d5dee8;border-radius:3px;padding:1px 5px}
+
+
+/* ============ tata letak PDF satu lembar; web desktop memakai tata letak yang sama ============ */
+@media print, screen and (min-width:821px){
+  .side{padding:7mm 6mm 6mm}
+  .side-rest{justify-content:space-between}
+  .portrait{width:24mm;height:24mm}
+  .stack-group{padding:1.8px 0}
+  .name{margin-top:5mm}
+  .side-block{margin-top:3.8mm}
+  .lead{display:grid;grid-template-columns:auto auto;justify-content:space-between;column-gap:1.8mm;font-size:6.8pt;line-height:1.4}
+  .lead li{padding:1.6px 0 1.6px 2.2mm;white-space:nowrap}
+  .lead li:nth-last-child(2){border-bottom:0}
+  .lead li::before{width:1mm;height:1mm;margin-top:-.5mm}
+  .contacts{padding-top:3.5mm;gap:3px}
+  .sh{margin-bottom:2mm}
+  .glance{margin-bottom:3.4mm}
+  .intro{margin-bottom:4.2mm}
+  section{margin-bottom:4mm}
+  .main{padding:8mm 9mm 5mm 9mm}
+  .ach{display:grid;grid-template-columns:1fr 1fr;column-gap:6mm}
+  .ach li:nth-child(2){border-top:0;padding-top:0}
+  .ach p{font-size:8.9pt;line-height:1.5}
+  .entry{padding-bottom:4.2mm}
+  .entry ul{margin-top:.8mm}
+  .entry li{margin-bottom:1px}
+  h2.sec{margin-bottom:2.4mm}
+  .ach li{padding:1.6mm 0}
+  .entry li{line-height:1.42}
+  /* PREVIEW B: pengalaman gaya eksekutif. Jabatan terakhir lebar penuh dengan tanggal di kanan, jabatan lain dalam grid 2 kolom yang sejajar dengan garis pemisah tipis */
+  .timeline{padding-left:0}
+  .timeline::before{display:none}
+  .entry::before{display:none}
+  .timeline > .entry{display:grid;grid-template-columns:1fr auto;column-gap:5mm;padding:0 0 2.6mm;margin:0}
+  .timeline > .entry > div:not(.entry-when){display:contents}
+  .timeline > .entry .entry-when{grid-column:2;grid-row:1/span 2;text-align:right;line-height:1.5;padding-top:1px}
+  .timeline > .entry .entry-when span{display:block}
+  .timeline > .entry .entry-when span::before{content:none}
+  .timeline > .entry .entry-title{grid-column:1;grid-row:1;font-size:11.2pt;letter-spacing:-.15px;margin-top:0}
+  .timeline > .entry .entry-org{grid-column:1;grid-row:2;font-size:8.8pt}
+  .timeline > .entry .entry-note,.timeline > .entry .entry-cos,.timeline > .entry ul{grid-column:1/-1}
+  .timeline > .entry .entry-note{margin-top:1.2mm}
+  .tl-grid{display:grid;grid-template-columns:1fr 1fr;border-top:1.5px solid var(--navy)}
+  .tl-grid .entry{padding:2.2mm 4.5mm 2.2mm 0;border-bottom:1px solid var(--rule)}
+  .tl-grid .entry:nth-child(even){padding:2.2mm 0 2.2mm 4.5mm;border-left:1px solid var(--rule)}
+  .tl-grid .entry:nth-child(odd){border-right:0}
+  .tl-grid .entry:last-child{border-bottom:0;padding-bottom:0}
+  .tl-grid .entry:nth-child(5){grid-column:1/-1;padding-right:0}
+  .tl-grid .entry-when{margin-bottom:.4mm}
+  .tl-grid .entry-title{font-size:9.2pt}
+  .tl-grid .entry-org{font-size:8.3pt}
+  .timeline .entry-cos{display:block;margin-top:1mm;font-size:6.6pt;line-height:1.45;color:var(--soft)}
+  .timeline .entry-cos .tag{display:inline;padding:0;border:0;background:none;font:inherit;color:inherit}
+  .timeline .entry-cos .tag:not(:last-child)::after{content:" · "}
+  .timeline .entry li{font-size:8pt;line-height:1.4}
+  .timeline .entry-note{font-size:7.9pt}
+}
+/* web desktop: lembar selebar versi PDF sebelum diperkecil, jadi isinya sama persis dengan PDF */
+@media screen and (min-width:821px){
+  :root{--page-w:calc(210mm / var(--scale))}
+}
+@media screen and (min-width:821px) and (max-width:1000px){
+  .sheet{zoom:var(--scale)}
+  .toolbar-in{max-width:210mm}
+}
+/* ============ layar sempit ============ */
+@media screen and (max-width:820px){
+  :root{--page-w:100%}
+  body{font-size:10.5pt}
+  .toolbar-in{padding:9px 14px;flex-wrap:wrap}
+  .sheet{display:flex;flex-direction:column;margin:0;box-shadow:none}
+  .side{display:contents}
+  .side-top{order:1;background:var(--side) url(batik-naga.svg) 0 0/220px repeat;color:var(--side-ink);padding:28px 20px 24px}
+  .main{order:2;padding:24px 20px}
+  .side-rest{display:block;order:3;background:var(--side) url(batik-naga.svg) 0 0/220px repeat;color:var(--side-ink);padding:4px 20px 30px}
+  .side-rest .side-block{margin-top:24px}
+  .portrait{width:100px;height:100px;margin:0}
+  .name{margin-top:18px}
+  .role{font-size:10pt;white-space:normal}
+  .contacts{font-size:10pt;margin-top:20px}
+  .glance{grid-template-columns:repeat(2,1fr)}
+  .ach p,.entry li,.tagline{font-size:10.5pt}
+  .skill-name,.fact,.edu-meta{font-size:10pt}
+  .stack-group{grid-template-columns:34% 1fr}
+  .stack-label{font-size:8.5pt}
+  .stack .tags{font-size:10pt}
+  .lead{font-size:10pt}
+  .side .tag,.main .tag{font-size:9pt}
+}
+
+/* ============ visitor gate ============ */
+.gate-overlay{position:fixed;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(3px);
+  display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+.gate-overlay.open{display:flex}
+.gate-card{background:#fff;border-radius:10px;max-width:340px;width:100%;padding:26px 24px;
+  box-shadow:0 20px 60px rgba(15,23,42,.3)}
+.gate-card h3{font-size:15pt;font-weight:700;color:var(--ink);margin-bottom:6px}
+.gate-card p{font-size:9.3pt;color:var(--soft);line-height:1.5;margin-bottom:14px}
+.gate-card input{width:100%;font:inherit;font-size:10.5pt;padding:9px 11px;border:1px solid var(--rule);
+  border-radius:6px;margin-bottom:10px}
+.gate-card input:focus{outline:2px solid #9fdbe6;border-color:var(--accent)}
+.gate-card button{width:100%;font:inherit;font-size:10.5pt;font-weight:600;padding:9px;border:none;
+  border-radius:6px;background:var(--navy);color:#fff;cursor:pointer}
+.gate-card button:hover{background:var(--navy-deep)}
+.gate-card button:disabled{opacity:.6;cursor:default}
+.gate-error{font-size:8.6pt;color:#c0392b;margin:-4px 0 10px}
+.gate-card .gate-skip{margin-top:8px;background:none;color:var(--soft);font-weight:500}
+.gate-card .gate-skip:hover{background:none;color:var(--ink);text-decoration:underline}
+
+/* ============ analytics modal ============ */
+.log-overlay{position:fixed;inset:0;background:rgba(15,23,42,.55);backdrop-filter:blur(3px);
+  display:none;align-items:center;justify-content:center;z-index:100;padding:20px}
+.log-overlay.open{display:flex}
+.log-card{background:#fff;border-radius:10px;max-width:760px;width:100%;max-height:80vh;
+  display:flex;flex-direction:column;box-shadow:0 20px 60px rgba(15,23,42,.3)}
+.log-head{display:flex;justify-content:space-between;align-items:center;padding:16px 20px;
+  border-bottom:1px solid var(--rule)}
+.log-head h3{font-size:13pt;font-weight:700;color:var(--ink)}
+.log-close{background:none;border:none;font-size:18px;color:var(--soft);cursor:pointer;line-height:1;padding:4px}
+.log-close:hover{color:var(--ink)}
+.log-actions{display:flex;align-items:center;gap:10px}
+.log-del,.log-clear{font:inherit;font-size:8.4pt;font-weight:600;color:#b42318;background:#fff;border:1px solid #f1c4bf;
+  border-radius:5px;padding:3px 9px;cursor:pointer;white-space:nowrap}
+.log-del:hover,.log-clear:hover{background:#fef3f2}
+.log-del:disabled,.log-clear:disabled{opacity:.5;cursor:default}
+.log-body{overflow:auto;padding:0 20px 20px}
+.pdf-card{max-width:860px;max-height:92vh}
+.pdf-actions{display:flex;align-items:center;gap:8px}
+.pdf-body{overflow:auto;background:#e5e9ef;padding:16px;display:flex;flex-direction:column;align-items:center;gap:14px;border-radius:0 0 10px 10px}
+.pdf-body img{display:block;width:100%;max-width:794px;height:auto;background:#fff;box-shadow:0 4px 18px rgba(15,23,42,.18)}
+.log-table{width:100%;border-collapse:collapse;font-size:8.6pt}
+.log-table th{text-align:left;padding:7px 8px;border-bottom:2px solid var(--rule);color:var(--navy);
+  font-weight:700;white-space:nowrap;position:sticky;top:0;background:#fff}
+.log-table td{padding:6px 8px;border-bottom:1px solid var(--rule);color:var(--body);
+  white-space:nowrap}
+.log-table td.ua{white-space:normal;word-break:break-all;min-width:220px}
+.log-empty,.log-loading,.log-error{padding:20px;text-align:center;color:var(--soft);font-size:9.3pt}
+.log-warn{color:#b42318;background:#fef3f2;border-bottom:1px solid #fecdca;padding:10px 14px;text-align:left}
+
+/* ============ print — A4 ============ */
+@page{size:A4;margin:0}
+@media print{
+  /* latar halaman: kolom sidebar gelap penuh di setiap halaman */
+  html{background:linear-gradient(90deg,#0f1b2d calc(var(--side-w) * var(--scale)),#fff 0)}
+  body{background:transparent}
+  .toolbar,.gate-overlay,.log-overlay,.pdf-overlay{display:none !important}
+  .sheet{width:calc(210mm / var(--scale));zoom:var(--scale);margin:0;box-shadow:none}
+  /* latar sidebar digambar di sheet agar tersambung di semua halaman */
+  .sheet{background:transparent}
+  .side{background:url(batik-naga.svg) 0 0/220px repeat transparent}
+  .main{background:url(batik-naga-light.svg) 0 0/220px repeat transparent}
+  .stack-group{break-inside:avoid}
+  .side,.main{-webkit-box-decoration-break:clone;box-decoration-break:clone}
+  a{text-decoration:none}
+  h2.sec,.sh{break-after:avoid;page-break-after:avoid}
+  .ach li,.skill,.fact,.glance,.edu-title{break-inside:avoid;page-break-inside:avoid}
+  .np{display:none !important}
+}
+
+</style>
+</head>
+<body>
+
+<div class="log-overlay pdf-overlay" id="pdfOverlay" onclick="if(event.target===this)closePdfPreview()">
+  <div class="log-card pdf-card">
+    <div class="log-head">
+      <h3>Preview CV</h3>
+      <div class="pdf-actions">
+        <a class="btn btn-ghost" href="Asop-CV-ATS.pdf" download="Asop-CV-ATS.pdf" title="Plain one-column version for online job portals">ATS version</a>
+        <a class="btn btn-primary" href="preview-b.pdf" download="Asop-CV-preview-b.pdf">
+          <svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>Download</a>
+        <button class="log-close" type="button" onclick="closePdfPreview()" aria-label="Tutup">&times;</button>
+      </div>
+    </div>
+    <div class="pdf-body">
+      <img src="cv-preview-1.jpg" alt="CV" width="1240" height="1754" loading="lazy">
+    </div>
+  </div>
+</div>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true"><defs>
+<linearGradient id="gbar" gradientUnits="userSpaceOnUse" x1="0" y1="0" x2="100" y2="0"><stop offset="0" stop-color="#14b8a6"/><stop offset="1" stop-color="#5eead4"/></linearGradient>
+</defs></svg>
+
+<div class="toolbar">
+  <div class="toolbar-in">
+    <a class="btn btn-ghost" href="mailto:asopkarawang@gmail.com">
+      <svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>Email</a>
+    <button class="btn btn-ghost" onclick="openVisitorLog()">
+      <svg viewBox="0 0 24 24"><path d="M3 3v18h18v-2H5V3H3zm4 14h2v-6H7v6zm4 0h2V7h-2v10zm4 0h2v-4h-2v4z"/></svg>Analytics</button>
+    <button class="btn btn-primary" type="button" onclick="openPdfPreview()">
+      <svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zM19 9h-4V3H9v6H5l7 7 7-7z"/></svg>Download PDF</button>
+  </div>
+</div>
+
+<article class="sheet">
+
+  <aside class="side">
+    <div class="side-top">
+      <figure class="portrait"><img src="photo.jpg" alt="Portrait of Asop" width="500" height="500"></figure>
+      <h1 class="name">Asop</h1>
+      <div class="role">Management Information Systems Manager</div>
+      <div class="headline"><span>IT &amp; Digital Transformation |</span> <span>ERP &amp; Business Systems</span></div>
+      <div class="side-block contacts">
+      <span><svg viewBox="0 0 24 24"><path d="M20 4H4a2 2 0 00-2 2v12a2 2 0 002 2h16a2 2 0 002-2V6a2 2 0 00-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg><a href="mailto:asopkarawang@gmail.com">asopkarawang@gmail.com</a></span>
+      <span><svg viewBox="0 0 24 24"><path d="M6.6 10.8a15.1 15.1 0 006.6 6.6l2.2-2.2c.3-.3.7-.4 1-.2 1.2.4 2.4.6 3.6.6.6 0 1 .4 1 1V20c0 .6-.4 1-1 1C10.6 21 3 13.4 3 4c0-.6.4-1 1-1h3.5c.6 0 1 .4 1 1 0 1.3.2 2.5.6 3.6.1.3 0 .7-.2 1l-2.3 2.2z"/></svg><a href="tel:+6282125093077">+62 821-2509-3077</a></span>
+      <span><svg viewBox="0 0 24 24"><path d="M12 2C8.1 2 5 5.1 5 9c0 5.2 7 13 7 13s7-7.8 7-13c0-3.9-3.1-7-7-7zm0 9.5A2.5 2.5 0 1112 6.5a2.5 2.5 0 010 5z"/></svg>Karawang, Jawa Barat</span>
+      <span><svg viewBox="0 0 24 24"><path d="M12 .5A11.5 11.5 0 00.5 12a11.5 11.5 0 007.9 10.9c.6.1.8-.2.8-.6v-2c-3.2.7-3.9-1.5-3.9-1.5-.5-1.4-1.3-1.7-1.3-1.7-1-.7.1-.7.1-.7 1.1.1 1.7 1.2 1.7 1.2 1 1.8 2.7 1.3 3.4 1 .1-.8.4-1.3.7-1.6-2.6-.3-5.3-1.3-5.3-5.7 0-1.3.4-2.3 1.2-3.1-.1-.3-.5-1.5.1-3.1 0 0 1-.3 3.2 1.2a11 11 0 015.8 0C17.1 4.8 18.1 5.1 18.1 5.1c.6 1.6.2 2.8.1 3.1.8.8 1.2 1.8 1.2 3.1 0 4.4-2.7 5.4-5.3 5.7.4.4.8 1.1.8 2.2v3.3c0 .4.2.7.8.6A11.5 11.5 0 0023.5 12 11.5 11.5 0 0012 .5z"/></svg><a href="https://github.com/asop-source" target="_blank" rel="noopener">github.com/asop-source</a></span>
+      <span><svg viewBox="0 0 24 24"><path d="M19 3H5a2 2 0 00-2 2v14a2 2 0 002 2h14a2 2 0 002-2V5a2 2 0 00-2-2zM8.3 18.3H5.7V9.8h2.6v8.5zM7 8.6a1.5 1.5 0 110-3 1.5 1.5 0 010 3zm11.3 9.7h-2.6v-4.1c0-1-.4-1.7-1.3-1.7-.7 0-1.1.5-1.3 1-.1.2-.1.4-.1.7v4.1h-2.6s0-6.9 0-8.5h2.6V11c.3-.5 1-1.3 2.4-1.3 1.8 0 3 1.2 3 3.6v5z"/></svg><a href="https://www.linkedin.com/in/asop-s-kom-a03758b6" target="_blank" rel="noopener">linkedin.com/in/asop-s-kom-a03758b6</a></span>
+      </div>
+    </div>
+
+    <div class="side-rest">
+      <div class="side-block">
+        <h3 class="sh">IT Leadership Competencies</h3>
+        <ul class="lead">
+          <li>IT Strategy &amp; Roadmap</li>
+          <li>IT Governance</li>
+          <li>ERP &amp; Business Systems</li>
+          <li>Team Leadership</li>
+          <li>IT Service Management</li>
+          <li>Executive Reporting</li>
+          <li>Security &amp; Continuity</li>
+          <li>Vendor Management</li>
+          <li>Digital Transformation</li>
+          <li>IT Spend &amp; Assets</li>
+        </ul>
+      </div>
+
+      <div class="side-block">
+        <h3 class="sh">Technology Stack</h3>
+        <div class="stack">
+          <div class="stack-group"><div class="stack-label">Framework</div><div class="tags"><span class="tag">Odoo ERP</span></div></div>
+          <div class="stack-group"><div class="stack-label">AI &amp; Automation</div><div class="tags"><span class="tag">LangChain</span><span class="tag long">Retrieval-Augmented Generation</span><span class="tag">AI Agent</span><span class="tag">AI-Assisted Development</span><span class="tag">n8n</span></div></div>
+          <div class="stack-group"><div class="stack-label">Language</div><div class="tags"><span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">PHP</span></div></div>
+          <div class="stack-group"><div class="stack-label">Database</div><div class="tags"><span class="tag">PostgreSQL</span></div></div>
+          <div class="stack-group"><div class="stack-label">ERP &amp; Business</div><div class="tags"><span class="tag">Odoo ERP</span><span class="tag">Accurate</span><span class="tag">Microsoft 365</span></div></div>
+          <div class="stack-group"><div class="stack-label">DevOps &amp; Infra</div><div class="tags"><span class="tag">Docker</span><span class="tag">Nginx</span><span class="tag">Ubuntu Server</span><span class="tag">Git</span><span class="tag">Continuous Integration</span><span class="tag">Continuous Delivery</span></div></div>
+        </div>
+      </div>
+
+      <div class="side-block">
+        <h3 class="sh">Languages</h3>
+          <div class="skill"><div class="skill-name">Indonesian &mdash; Native</div><svg class="meter" viewBox="0 0 100 4" preserveAspectRatio="none" aria-hidden="true"><rect width="100" height="4" rx="2" fill="#24344b"/><rect width="100" height="4" rx="2" fill="url(#gbar)"/></svg></div>
+          <div class="skill"><div class="skill-name">English &mdash; Professional working</div><svg class="meter" viewBox="0 0 100 4" preserveAspectRatio="none" aria-hidden="true"><rect width="100" height="4" rx="2" fill="#24344b"/><rect width="65" height="4" rx="2" fill="url(#gbar)"/></svg></div>
+      
+      </div>
+
+      <div class="side-block">
+        <h3 class="sh">Education</h3>
+        <div class="edu-title">Bachelor of Computer Science (S.Kom)</div>
+        <div class="edu-meta">Informatics Engineering</div>
+        <div class="edu-meta">STMIK Rosma Karawang, Jawa Barat</div>
+        <div class="edu-meta">2014 &ndash; 2018</div>
+      </div>
+
+      <div class="side-block">
+        <h3 class="sh">Training &amp; Certification</h3>
+        <div class="edu-title">Odoo ERP Bootcamp</div>
+        <div class="edu-meta">Vitraining</div>
+        <div class="edu-meta">2018</div>
+      </div>
+
+      <div class="side-block">
+        <h3 class="sh">Personal Details</h3>
+        <dl>
+          <div class="fact"><dt>Date of birth</dt><dd>12 Aug 1992</dd></div>
+          <div class="fact"><dt>Place of birth</dt><dd>Karawang</dd></div>
+          <div class="fact"><dt>Nationality</dt><dd>Indonesian</dd></div>
+          <div class="fact"><dt>Marital status</dt><dd>Married</dd></div>
+          <div class="fact"><dt>Height</dt><dd>166 cm</dd></div>
+          <div class="fact"><dt>Driving license</dt><dd>SIM A</dd></div>
+        </dl>
+      </div>
+    </div>
+  </aside>
+
+  <main class="main">
+    <section class="intro">
+      <div class="kicker">~/profile</div>
+      <p class="tagline">Management Information Systems Manager with 8+ years in IT, heading technology for a <b>six-company group of around 1,200 employees</b> and reporting to the Chief Executive Officer and Board of Directors. <b>Cut yearly IT asset spending by &plusmn;70%</b> and <b>ended Odoo Enterprise license fees</b> without disrupting operations. A background as an Odoo ERP engineer means decisions rest on how systems are actually built.</p>
+      <p class="portfolio-link">Profile &amp; portfolio <span aria-hidden="true">&rarr;</span> <a href="https://webhousekarawang.com" target="_blank" rel="noopener">webhousekarawang.com</a></p>
+      <div class="glance">
+        <div><b>8+</b><span>years in IT</span></div>
+        <div><b>6</b><span>group companies</span></div>
+        <div><b>±1,200</b><span>employees supported</span></div>
+        <div><b>Board</b><span>reporting line</span></div>
+      </div>
+    </section>
+
+    <section>
+      <h2 class="sec"><i>01</i>Key Results<span class="sec-at">at PT Multi Kencana Niagatama</span></h2>
+      <ul class="ach">
+        <li><p><b>Built a flagship loyalty program to grow sales.</b> Led the in-house build of a nationwide loyalty program for installers, now rolling out (<a href="https://gebyar.multi-kabel.com" target="_blank" rel="noopener">gebyar.multi-kabel.com</a>).</p></li>
+        <li><p><b>Cut yearly IT asset spending by &plusmn;70%, from &plusmn;Rp 1.2 billion to &plusmn;Rp 350 million.</b> Reused idle servers and equipment instead of buying new, with no disruption to operations.</p></li>
+        <li><p><b>Led the decision to stop paying for Odoo Enterprise licenses.</b> Moved the group to self-hosted Odoo Community with no disruption to operations.</p></li>
+        <li><p><b>Brought all IT support into one system.</b> Replaced email forms and paper with an in-house IT Service Management System for tickets, monitoring, maintenance, and assets (<a href="https://ticketing.multi-kabel.com" target="_blank" rel="noopener">ticketing.multi-kabel.com</a>).</p></li>
+        <li><p><b>Helped employees solve problems on their own.</b> Introduced an in-house AI assistant staff can ask anytime about Standard Operating Procedures and technology (<a href="https://ai.multi-kabel.com" target="_blank" rel="noopener">ai.multi-kabel.com</a>).</p></li>
+        <li><p><b>Reduced data risk by bringing systems under company control.</b> Moved from rented cloud to company-owned servers with routine backups, as part of a shift to automated, structured processes.</p></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2 class="sec"><i>02</i>Professional Experience</h2>
+      <div class="timeline">
+      <div class="entry">
+        <div class="entry-when">Jan 2026 &ndash; Present<span>Jakarta Barat</span></div>
+        <div>
+          <div class="entry-title">Management Information Systems Manager</div>
+          <div class="entry-org">PT Multi Kencana Niagatama</div>
+          <div class="entry-note">Head of technology for the group, reporting to the Board of Directors.</div>
+          <div class="entry-cos">
+            <span class="tag">PT Multi Kencana Niagatama</span><span class="tag">PT Nusantara Electric</span><span class="tag">PT Pulung Cable Indonesia</span>
+            <span class="tag">PT Indoreka Sukses Mandiri</span><span class="tag">PT MKN Global Niagatama</span><span class="tag">PT Terang Kabel</span>
+          </div>
+          <ul>
+            <li><b>Decide the group's technology direction</b> &mdash; choose what is adopted across all six companies and drive it from selection to full rollout.</li>
+            <li><b>Shape IT strategy with the Board of Directors</b> &mdash; turn business goals into an IT roadmap, investment priorities, and measurable results.</li>
+            <li><b>Set group IT policy</b> &mdash; written Standard Operating Procedures for access, passwords, and devices, approved by the Board, plus technology standards for every company.</li>
+            <li><b>Lead digital transformation</b> &mdash; ERP, in-house platforms, automation, and AI, standardized across the group.</li>
+            <li><b>Run the Management Information Systems function</b> &mdash; lead a team of 4 (1 supervisor, 2 IT support, 1 full-stack developer), select and manage vendors, and safeguard security and continuity for around 1,200 employees.</li>
+            <li><b>Report monthly to the Board</b> &mdash; IT performance, risks, and priorities that management relies on for decisions.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="tl-grid">
+      <div class="entry">
+        <div class="entry-when">Dec 2024 &ndash; Nov 2025<span>Jakarta Selatan</span></div>
+        <div>
+          <div class="entry-title">IT Operation &ndash; Odoo ERP Legacy</div>
+          <div class="entry-org">PT Paragon Technology and Innovation</div>
+          <div class="entry-note">ParagonCorp &mdash; a leading powerhouse in Indonesia's cosmetics and personal care industry.</div>
+          <ul>
+            <li>Managed daily operations and maintenance of legacy Odoo ERP systems supporting business continuity at national scale.</li>
+            <li>Owned monitoring, backup, and incident-response routines to prevent data loss and minimize downtime.</li>
+            <li class="np">Acted as escalation point for end-user issues and coordinated patches and infrastructure upgrades with development teams.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-when">Jun 2024 &ndash; Nov 2024</div>
+        <div>
+          <div class="entry-title">Founder</div>
+          <div class="entry-org">PT Nusa Garda Teknologi</div>
+          <div class="entry-note">Independent technology company providing Odoo ERP implementation services.</div>
+          <ul>
+            <li>Founded and ran the company as a single-owner PT (PT Perorangan), handling all client work directly.</li>
+            <li>Implemented Odoo ERP for 3 client companies.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-when">Oct 2020 &ndash; May 2024<span>Jakarta Pusat</span></div>
+        <div>
+          <div class="entry-title">Senior Odoo ERP Developer</div>
+          <div class="entry-org">PT Akselerasi Teknologi Investama</div>
+          <div class="entry-note np">IT consulting firm delivering technology solutions for business growth and digital transformation.</div>
+          <ul>
+            <li>Led ERP delivery on client projects &mdash; stakeholder requirement gathering, technical specification, development, and go-live.</li>
+            <li>Led migrations of legacy systems to the latest Odoo ERP version, ensuring data integrity and minimal downtime.</li>
+            <li class="np">Mentored developers through code reviews and performance optimization, raising delivery quality across the team.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-when">Mar 2019 &ndash; Sep 2020<span>Jakarta Barat</span></div>
+        <div>
+          <div class="entry-title">Product Developer</div>
+          <div class="entry-org">PT Trimitrasis Consulting</div>
+          <ul>
+            <li>Developed Odoo ERP modules and debranded Odoo ERP into the company's own product system.</li>
+            <li class="np">Worked with marketing, design, and engineering teams to define specifications, timelines, and release scope.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="entry">
+        <div class="entry-when">Mar 2018 &ndash; Feb 2019<span>Bandung</span></div>
+        <div>
+          <div class="entry-title">Odoo ERP Developer</div>
+          <div class="entry-org">Vitraining</div>
+          <ul>
+            <li>Developed and customized Odoo ERP modules with Python and XML to improve client business workflows.</li>
+            <li class="np">Maintained Odoo ERP applications &mdash; backups, performance monitoring, troubleshooting &mdash; and supported legacy version migrations.</li>
+          </ul>
+        </div>
+      </div>
+      </div>
+      </div>
+    </section>
+  </main>
+
+</article>
+
+<div class="gate-overlay open" id="gateOverlay">
+  <div class="gate-card">
+    <h3>Selamat datang</h3>
+    <p>Boleh isi nama Anda sebelum melihat CV ini (opsional).</p>
+    <form id="gateForm">
+      <input type="text" id="gateName" placeholder="Nama Anda" required autofocus>
+      <button type="submit">Lihat CV</button>
+      <button type="button" class="gate-skip" id="gateSkip">Lewati</button>
+    </form>
+  </div>
+</div>
+
+<div class="gate-overlay" id="loginOverlay">
+  <div class="gate-card">
+    <h3>Analytics Login</h3>
+    <p>Masuk untuk melihat visitor log.</p>
+    <form id="loginForm">
+      <input type="password" id="loginPassword" placeholder="Password" required autofocus>
+      <div class="gate-error" id="loginError" style="display:none">Password salah.</div>
+      <button type="submit">Masuk</button>
+    </form>
+  </div>
+</div>
+
+<div class="log-overlay" id="logOverlay">
+  <div class="log-card">
+    <div class="log-head">
+      <h3>Visitor Log</h3>
+      <div class="log-actions">
+        <button class="log-clear" id="logClear" type="button" style="display:none">Hapus semua</button>
+        <button class="log-close" onclick="closeVisitorLog()">&times;</button>
+      </div>
+    </div>
+    <div class="log-body" id="logBody">
+      <div class="log-loading">Memuat...</div>
+    </div>
+  </div>
+</div>
+
+
+
+<script>
+  function openPdfPreview(){ document.getElementById('pdfOverlay').classList.add('open'); }
+  function closePdfPreview(){ document.getElementById('pdfOverlay').classList.remove('open'); }
+  document.addEventListener('keydown', function(e){ if (e.key === 'Escape') closePdfPreview(); });
+</script>
+</body>
+</html>
+
