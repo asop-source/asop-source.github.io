@@ -94,7 +94,8 @@ a{color:inherit}
 .stack-group:last-child{border-bottom:0}
 .stack-label{font-size:6.6pt;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--side-soft);line-height:1.45;padding-top:.6px}
 .stack .tags{display:block;font-size:7.8pt;line-height:1.45;color:var(--side-ink)}
-.side .stack .tag{display:inline-block;font:inherit;font-weight:500;color:inherit;background:none;border:0;padding:0;white-space:nowrap}
+.side .stack .tag{display:inline-block;font:inherit;font-weight:500;color:inherit;background:none;border:0;padding:0;white-space:nowrap;max-width:100%}
+.side .stack .tag.long{white-space:normal}
 .side .stack .tag:not(:last-child){margin-right:.45em}
 .side .stack .tag:not(:last-child)::after{content:",";color:var(--side-soft)}
 .edu-title{font-size:8.8pt;font-weight:700;color:#fff;line-height:1.3}
@@ -189,12 +190,12 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   .timeline{display:grid;grid-template-columns:1fr 1fr;column-gap:6mm;padding-left:0;align-items:start}
   .timeline::before{display:none}
   .tl-col + .tl-col{padding-top:0}
-  .timeline .entry{padding:0 0 3mm 4mm;border-left:1.5px solid var(--rule)}
+  .timeline .entry{padding:0 0 2.6mm 4mm;border-left:1.5px solid var(--rule)}
   .timeline .entry::before{left:-1.35mm}
   .timeline .entry-cos{display:block;margin-top:1mm;font-size:6.9pt;line-height:1.45;color:var(--soft)}
   .timeline .entry-cos .tag{display:inline;padding:0;border:0;background:none;font:inherit;color:inherit}
   .timeline .entry-cos .tag:not(:last-child)::after{content:" · "}
-  .timeline .entry li{font-size:8.1pt;line-height:1.42}
+  .timeline .entry li{font-size:8pt;line-height:1.4}
   .timeline .entry-note{font-size:7.9pt}
 }
 /* web desktop: lembar selebar versi PDF sebelum diperkecil, jadi isinya sama persis dengan PDF */
@@ -358,7 +359,7 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
           <li>IT Strategy &amp; Roadmap</li>
           <li>IT Governance</li>
           <li>ERP &amp; Business Systems</li>
-          <li>MIS Team Leadership</li>
+          <li>Team Leadership</li>
           <li>IT Service Management</li>
           <li>Executive Reporting</li>
           <li>Security &amp; Continuity</li>
@@ -372,11 +373,11 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
         <h3 class="sh">Technology Stack</h3>
         <div class="stack">
           <div class="stack-group"><div class="stack-label">Framework</div><div class="tags"><span class="tag">Odoo ERP</span></div></div>
-          <div class="stack-group"><div class="stack-label">AI &amp; Automation</div><div class="tags"><span class="tag">LangChain</span><span class="tag">RAG</span><span class="tag">AI Agent</span><span class="tag">AI-Assisted Development</span><span class="tag">n8n</span></div></div>
+          <div class="stack-group"><div class="stack-label">AI &amp; Automation</div><div class="tags"><span class="tag">LangChain</span><span class="tag long">Retrieval-Augmented Generation</span><span class="tag">AI Agent</span><span class="tag">AI-Assisted Development</span><span class="tag">n8n</span></div></div>
           <div class="stack-group"><div class="stack-label">Language</div><div class="tags"><span class="tag">Python</span><span class="tag">JavaScript</span><span class="tag">PHP</span></div></div>
           <div class="stack-group"><div class="stack-label">Database</div><div class="tags"><span class="tag">PostgreSQL</span></div></div>
           <div class="stack-group"><div class="stack-label">ERP &amp; Business</div><div class="tags"><span class="tag">Odoo ERP</span><span class="tag">Accurate</span><span class="tag">Microsoft 365</span></div></div>
-          <div class="stack-group"><div class="stack-label">DevOps &amp; Infra</div><div class="tags"><span class="tag">Docker</span><span class="tag">Nginx</span><span class="tag">Ubuntu Server</span><span class="tag">Git</span><span class="tag">CI/CD</span></div></div>
+          <div class="stack-group"><div class="stack-label">DevOps &amp; Infra</div><div class="tags"><span class="tag">Docker</span><span class="tag">Nginx</span><span class="tag">Ubuntu Server</span><span class="tag">Git</span><span class="tag">Continuous Integration</span><span class="tag">Continuous Delivery</span></div></div>
         </div>
       </div>
 
@@ -419,13 +420,13 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
   <main class="main">
     <section class="intro">
       <div class="kicker">~/profile</div>
-      <p class="tagline">MIS Manager with 8+ years in IT, heading technology for a <b>six-company group of around 1,200 employees</b> and reporting to the CEO and Board. <b>Cut yearly IT asset spending by &plusmn;70%</b> and <b>ended Odoo Enterprise license fees</b> without disrupting operations. A background as an Odoo ERP engineer means decisions rest on how systems are actually built.</p>
+      <p class="tagline">Management Information Systems Manager with 8+ years in IT, heading technology for a <b>six-company group of around 1,200 employees</b> and reporting to the Chief Executive Officer and Board of Directors. <b>Cut yearly IT asset spending by &plusmn;70%</b> and <b>ended Odoo Enterprise license fees</b> without disrupting operations. A background as an Odoo ERP engineer means decisions rest on how systems are actually built.</p>
       <p class="portfolio-link">Profile &amp; portfolio <span aria-hidden="true">&rarr;</span> <a href="https://webhousekarawang.com" target="_blank" rel="noopener">webhousekarawang.com</a></p>
       <div class="glance">
         <div><b>8+</b><span>years in IT</span></div>
         <div><b>6</b><span>group companies</span></div>
         <div><b>±1,200</b><span>employees supported</span></div>
-        <div><b>CEO&nbsp;&amp;&nbsp;BoD</b><span>reporting line</span></div>
+        <div><b>Board</b><span>reporting line</span></div>
       </div>
     </section>
 
@@ -436,7 +437,7 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
         <li><p><b>Cut yearly IT asset spending by &plusmn;70%, from &plusmn;Rp 1.2 billion to &plusmn;Rp 350 million.</b> Reused idle servers and equipment instead of buying new, with no disruption to operations.</p></li>
         <li><p><b>Led the decision to stop paying for Odoo Enterprise licenses.</b> Moved the group to self-hosted Odoo Community with no disruption to operations.</p></li>
         <li><p><b>Brought all IT support into one system.</b> Replaced email forms and paper with an in-house IT Service Management System for tickets, monitoring, maintenance, and assets (<a href="https://ticketing.multi-kabel.com" target="_blank" rel="noopener">ticketing.multi-kabel.com</a>).</p></li>
-        <li><p><b>Helped employees solve problems on their own.</b> Introduced an in-house AI assistant staff can ask anytime about SOPs and technology (<a href="https://ai.multi-kabel.com" target="_blank" rel="noopener">ai.multi-kabel.com</a>).</p></li>
+        <li><p><b>Helped employees solve problems on their own.</b> Introduced an in-house AI assistant staff can ask anytime about Standard Operating Procedures and technology (<a href="https://ai.multi-kabel.com" target="_blank" rel="noopener">ai.multi-kabel.com</a>).</p></li>
         <li><p><b>Reduced data risk by bringing systems under company control.</b> Moved from rented cloud to company-owned servers with routine backups, as part of a shift to automated, structured processes.</p></li>
       </ul>
     </section>
@@ -450,15 +451,15 @@ h2.sec::after{content:"";flex:1;height:1px;background:var(--rule)}
         <div>
           <div class="entry-title">Management Information Systems Manager</div>
           <div class="entry-org">PT Multi Kencana Niagatama</div>
-          <div class="entry-note">Head of technology for the group, setting direction with the CEO and Board of Directors.</div>
+          <div class="entry-note">Head of technology for the group, reporting to the Board of Directors.</div>
           <div class="entry-cos">
             <span class="tag">PT Multi Kencana Niagatama</span><span class="tag">PT Nusantara Electric</span><span class="tag">PT Pulung Cable Indonesia</span>
             <span class="tag">PT Indoreka Sukses Mandiri</span><span class="tag">PT MKN Global Niagatama</span><span class="tag">PT Terang Kabel</span>
           </div>
           <ul>
             <li><b>Decide the group's technology direction</b> &mdash; choose what is adopted across all six companies and drive it from selection to full rollout.</li>
-            <li><b>Shape IT strategy with the CEO and Board</b> &mdash; turn business goals into an IT roadmap, investment priorities, and measurable results.</li>
-            <li><b>Set group IT policy</b> &mdash; written SOPs for access, passwords, and devices, approved by the Board, plus technology standards for every company.</li>
+            <li><b>Shape IT strategy with the Board of Directors</b> &mdash; turn business goals into an IT roadmap, investment priorities, and measurable results.</li>
+            <li><b>Set group IT policy</b> &mdash; written Standard Operating Procedures for access, passwords, and devices, approved by the Board, plus technology standards for every company.</li>
             <li><b>Lead digital transformation</b> &mdash; ERP, in-house platforms, automation, and AI, standardized across the group.</li>
             <li><b>Run the Management Information Systems function</b> &mdash; lead a team of 4 (1 supervisor, 2 IT support, 1 full-stack developer), select and manage vendors, and safeguard security and continuity for around 1,200 employees.</li>
             <li><b>Report monthly to the Board</b> &mdash; IT performance, risks, and priorities that management relies on for decisions.</li>
